@@ -1,5 +1,25 @@
-body, p {
+body, p, ul, ol, li {
     margin: 0;
     padding: 0;
     font-family: Arial, Helvetica, sans-serif;
+}
+a:hover {
+    cursor: pointer;
+}
+.Header {
+    width: 100%;
+    background-color: rgb(228, 228, 228);
+}
+.Nav {
+    border-bottom: solid black 1px;
+}
+.Nav > li {
+    text-align: center;
+    display: inline;
+}
+.Nav > li:hover {
+    background-color: rgb(209, 209, 209);
+}
+.Nav > li > 
+.Title {
 }
