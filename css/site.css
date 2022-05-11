@@ -1,25 +1,112 @@
-body, p, ul, ol, li {
+body,
+p,
+ul,
+ol,
+li {
     margin: 0;
     padding: 0;
     font-family: Arial, Helvetica, sans-serif;
+    list-style: none;
 }
+
+a {
+    text-decoration: none;
+    color: black;
+}
+
 a:hover {
     cursor: pointer;
 }
+
 .Header {
+    display: inline-block;
     width: 100%;
-    background-color: rgb(228, 228, 228);
+    box-shadow: 0vh 0 0.3vh 0 rgb(155, 155, 155);
 }
-.Nav {
-    border-bottom: solid black 1px;
+
+.Nav,
+.Login {
+    margin: 1vh 2vh;
+    /* make horizontal */
+    display: inline-block;
 }
-.Nav > li {
+
+.Nav>li,
+.Login>li {
     text-align: center;
-    display: inline;
+    /* make horizontal */
+    display: inline-block;
 }
-.Nav > li:hover {
-    background-color: rgb(209, 209, 209);
+
+/* real styling of each nav element */
+.Nav>li>a,
+.Login>li>a {
+    display: block;
+    padding: 0.5vh 2vh;
+    border-radius: 15px;
+    border: solid black 1px;
+    /* animate hover change */
+    transition: border-radius 0.2s;
 }
-.Nav > li > 
+
+.Nav>li>a:hover,
+.Login>li>a:hover {
+    border-radius: 5px;
+}
+
+/* make login on right */
+.Login {
+    float: right;
+}
+
 .Title {
+    text-align: center;
+}
+
+/* center div trick :) */
+.Center {
+    width: 100%;
+    text-align: center;
+}
+
+/* table in the center of page if in "Center" div */
+table {
+    width: 80%;
+    margin: 0 10%;
+    border-collapse: collapse;
+}
+tr {
+    background-color: rgb(230, 230, 230);
+}
+tbody>tr>td,
+tbody>tr>th {
+    text-align: center;
+    padding: 1vh 0;
+}
+
+/* Round the corners of each table row */
+td:first-child,
+th:first-child {
+    border-radius: 10px 0 0 10px;
+}
+
+td:last-child,
+th:last-child {
+    border-radius: 0 10px 10px 0;
+}
+/* Alternate Table background colours per row */
+tr:nth-child(odd) {
+    background-color: rgb(194, 194, 194);
+}
+/* first row is black */
+tr:first-child {
+    background-color: black;
+    color: white;
+}
+/* make status more readable when text is yellow */
+.IssueStatus {
+    color: black;
+    padding: 5px;
+    border-radius: 3px;
+    text-shadow: 0px 0px white;
 }
