@@ -76,6 +76,7 @@ th, td {
 }
 
 /* table in the center of page if in "Center" div */
+/* Using a flexbox to create a table that looks nicer than a table */
 .FlexBox {
     display: flex;
     width: 80%;
@@ -83,27 +84,32 @@ th, td {
     row-gap: 2vh;
     flex-direction: column;
 }
+/* alternate colours per row */
 .FlexTable:nth-child(even) {
     background-color: rgb(240, 240, 240);
 }
 .FlexTable:nth-child(odd) {
     background-color: rgb(221, 221, 221);
 }
+/* keep first row a header style */
 .FlexTable:first-child {
     color: white;
     background-color: black;
 }
+/* Each "row" */
 .FlexTable {
     border-radius: 30px;
     width: 100%;
     overflow: hidden;
 }
+/* seperate the elements across the "row" */
 .FlexRow {
     margin: -2px 0px;
     width: 100%;
     justify-content: space-evenly;
     display: flex;
 }
+/* allow the last child to have a different bg colour */
 .FlexRow > td:last-child {
     margin-right: -5px;
 }
