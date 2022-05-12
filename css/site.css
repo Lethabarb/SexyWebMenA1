@@ -17,7 +17,9 @@ a {
 a:hover {
     cursor: pointer;
 }
-th, td {
+
+th,
+td {
     text-align: center;
     width: 100%;
     height: 100%;
@@ -25,9 +27,10 @@ th, td {
 }
 
 .Header {
-    display: inline-block;
+    display: flex;
     width: 100%;
     box-shadow: 0vh 0 0.3vh 0 rgb(155, 155, 155);
+    justify-content: space-between;
 }
 
 .Nav,
@@ -84,24 +87,29 @@ th, td {
     row-gap: 2vh;
     flex-direction: column;
 }
+
 /* alternate colours per row */
 .FlexTable:nth-child(even) {
     background-color: rgb(240, 240, 240);
 }
+
 .FlexTable:nth-child(odd) {
     background-color: rgb(221, 221, 221);
 }
+
 /* keep first row a header style */
 .FlexTable:first-child {
     color: white;
     background-color: black;
 }
+
 /* Each "row" */
 .FlexTable {
     border-radius: 30px;
     width: 100%;
     overflow: hidden;
 }
+
 /* seperate the elements across the "row" */
 .FlexRow {
     margin: -2px 0px;
@@ -109,7 +117,100 @@ th, td {
     justify-content: space-evenly;
     display: flex;
 }
+
 /* allow the last child to have a different bg colour */
-.FlexRow > td:last-child {
+.FlexRow>td:last-child {
     margin-right: -5px;
+}
+
+/* Grid to structure web page */
+.GridContainer {
+    margin-top: 3vh;
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    column-gap: 0vh;
+}
+/* Title, desc, ect */
+.MainGrid {
+    display: grid;
+    height: fit-content;
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr 1fr 3fr;
+    grid-template-areas:
+        "GridTitle"
+        "GridDescription"
+        "GridSolution";
+    row-gap: 3vh;
+    border-radius: 20px;
+    border: solid black;
+    justify-items: left;
+    align-items: center;
+    margin: 0 3vh 0 6vh;
+    padding: 3vh;
+}
+/* id, date, ect. */
+.SideGrid {
+    display: grid;
+    height: fit-content;
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr 1fr 1fr;
+    grid-template-areas:
+        "GridId"
+        "GridCatagory"
+        "GridDate";
+    row-gap: 3vh;
+    border-radius: 20px;
+    border: solid black;
+    justify-items: center;
+    align-items: center;
+    margin: 0 6vh 0 3vh;
+    padding: 3vh 0;
+}
+/* Grid elements */
+.GridTitle {
+    grid-area: GridTitle;
+    text-align: center;
+    width: 100%;
+    font-weight: bold;
+    font-size: 30px;
+}
+
+.GridDescription {
+    grid-area: GridDescription;
+}
+
+.GridSolution {
+    grid-area: GridSolution;
+}
+.GridId {
+    grid-area: GridId;
+    font-weight: bold;
+}
+
+.GridCatagory {
+    grid-area: GridCatagory;
+}
+
+.GridDate {
+    text-align: center;
+    grid-area: GridDate;
+}
+/* Grid elements end */
+.Comments {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    margin: 1vh 9vh;
+    column-gap: 6vh;
+}
+.Comment {
+    border: solid gray 1px;
+    border-radius: 20px;
+    overflow: hidden;
+    margin-left: 2vh;
+}
+.Comment > .Content {
+    padding: 2vh;
+}
+.Header > p {
+    margin: 1vh 3vh;
 }
