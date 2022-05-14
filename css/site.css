@@ -9,6 +9,10 @@ li {
     list-style: none;
 }
 
+body {
+    background-color: rgb(235, 235, 235);
+}
+
 a {
     text-decoration: none;
     color: black;
@@ -27,6 +31,7 @@ td {
 }
 
 .Header {
+    background: linear-gradient(90deg, rgba(2, 0, 36, 1) 0%, rgba(9, 9, 121, 1) 14%, rgba(0, 212, 255, 1) 100%);
     display: flex;
     width: 100%;
     box-shadow: 0vh 0 0.3vh 0 rgb(155, 155, 155);
@@ -42,6 +47,7 @@ td {
 
 .Nav>li,
 .Login>li {
+    overflow: hidden;
     text-align: center;
     /* make horizontal */
     display: inline-block;
@@ -50,10 +56,11 @@ td {
 /* real styling of each nav element */
 .Nav>li>a,
 .Login>li>a {
+    color: white;
     display: block;
     padding: 0.5vh 2vh;
     border-radius: 15px;
-    border: solid black 1px;
+    border: solid rgb(255, 255, 255) 2px;
     /* animate hover change */
     transition: border-radius 0.2s;
 }
@@ -88,14 +95,14 @@ td {
     flex-direction: column;
 }
 
-/* alternate colours per row */
+/* alternate colours per row
 .FlexTable:nth-child(even) {
     background-color: rgb(240, 240, 240);
 }
 
 .FlexTable:nth-child(odd) {
     background-color: rgb(221, 221, 221);
-}
+} */
 
 /* keep first row a header style */
 .FlexTable:first-child {
@@ -105,6 +112,8 @@ td {
 
 /* Each "row" */
 .FlexTable {
+    background-color: white;
+    box-shadow: 10px 10px 10px lightgray;
     border-radius: 30px;
     width: 100%;
     overflow: hidden;
@@ -119,60 +128,106 @@ td {
 }
 
 /* allow the last child to have a different bg colour */
-.FlexRow>td:last-child {
-    margin-right: -5px;
+:root {
+    --status0: rgb(78, 47, 0);
+    --status1: rgb(255, 196, 0);
+    --status2: rgb(170, 102, 0);
+    --status3: rgb(204, 0, 0);
+    --status4: rgb(0, 177, 0);
+}
+
+.Status0 {
+    color: white;
+    background-color: var(--status0);
+}
+
+.Status0body {
+    border-top-right-radius: 50px;
+    border-bottom-right-radius: 50px;
+    border-top: solid var(--status0) 2px;
+    border-right: solid var(--status0) 2px;
+    border-bottom: solid var(--status0) 2px;
+}
+
+.Status1 {
+    color: white;
+    background-color: var(--status1);
+}
+
+.Status1body {
+    border-top-right-radius: 50px;
+    border-bottom-right-radius: 50px;
+    border-top: solid var(--status1) 2px;
+    border-right: solid var(--status1) 2px;
+    border-bottom: solid var(--status1) 2px;
+}
+
+.Status2 {
+    color: white;
+    background-color: var(--status2);
+}
+
+.Status2body {
+    border-top-right-radius: 50px;
+    border-bottom-right-radius: 50px;
+    border-top: solid var(--status2) 2px;
+    border-right: solid var(--status2) 2px;
+    border-bottom: solid var(--status2) 2px;
+}
+
+.Status3 {
+    color: white;
+    background-color: var(--status3);
+}
+
+.Status3body {
+    border-top-right-radius: 50px;
+    border-bottom-right-radius: 50px;
+    border-top: solid var(--status3) 2px;
+    border-right: solid var(--status3) 2px;
+    border-bottom: solid var(--status3) 2px;
+}
+
+.Status4 {
+    color: white;
+    background-color: var(--status4);
+}
+
+.Status4body {
+    border-top-right-radius: 50px;
+    border-bottom-right-radius: 50px;
+    border-top: solid var(--status4) 2px;
+    border-right: solid var(--status4) 2px;
+    border-bottom: solid var(--status4) 2px;
 }
 
 /* Grid to structure web page */
 .GridContainer {
-    margin-top: 3vh;
     display: grid;
     grid-template-columns: 2fr 1fr;
-    column-gap: 0vh;
-}
-/* Title, desc, ect */
-.MainGrid {
-    display: grid;
-    height: fit-content;
-    grid-template-columns: 1fr;
-    grid-template-rows: 1fr 1fr 3fr;
+    grid-template-rows: 1fr 1fr 1fr 4fr;
+    gap: 1vh 3vh;
     grid-template-areas:
-        "GridTitle"
-        "GridDescription"
-        "GridSolution";
-    row-gap: 3vh;
-    border-radius: 20px;
-    border: solid black;
-    justify-items: left;
-    align-items: center;
-    margin: 0 3vh 0 6vh;
+        "GridTitle GridId"
+        "GridDescription GridCatagory"
+        "GridSolution GridDate"
+        "GridSolution .";
     padding: 3vh;
 }
-/* id, date, ect. */
-.SideGrid {
-    display: grid;
-    height: fit-content;
-    grid-template-columns: 1fr;
-    grid-template-rows: 1fr 1fr 1fr;
-    grid-template-areas:
-        "GridId"
-        "GridCatagory"
-        "GridDate";
-    row-gap: 3vh;
-    border-radius: 20px;
-    border: solid black;
-    justify-items: center;
-    align-items: center;
-    margin: 0 6vh 0 3vh;
-    padding: 3vh 0;
+
+.GridTitle,
+.GridDescription,
+.GridSolution,
+.GridId,
+.GridCatagory,
+.GridDate {
+    background-color: white;
+    box-shadow: 0 0 1vh gray;
+    padding: 2vh;
 }
-/* Grid elements */
+
 .GridTitle {
     grid-area: GridTitle;
-    text-align: center;
-    width: 100%;
-    font-weight: bold;
-    font-size: 30px;
 }
 
 .GridDescription {
@@ -182,9 +237,9 @@ td {
 .GridSolution {
     grid-area: GridSolution;
 }
+
 .GridId {
     grid-area: GridId;
-    font-weight: bold;
 }
 
 .GridCatagory {
@@ -192,25 +247,38 @@ td {
 }
 
 .GridDate {
-    text-align: center;
     grid-area: GridDate;
 }
-/* Grid elements end */
+
+/* Make comments same width and main section */
 .Comments {
     display: grid;
     grid-template-columns: 2fr 1fr;
-    margin: 1vh 9vh;
-    column-gap: 6vh;
+    grid-template-rows: 1fr;
+    column-gap: 3vh;
+    padding: 3vh;
 }
+
 .Comment {
-    border: solid gray 1px;
-    border-radius: 20px;
-    overflow: hidden;
-    margin-left: 2vh;
+    box-shadow: 0 0 1vh rgb(189, 189, 189);
+    border-left: solid gray 0.5px;
 }
-.Comment > .Content {
+
+.Comment>.Comment {
+    margin-left: 3vh;
+}
+
+.CommentHead {
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    background-color: rgb(184, 184, 184);
+}
+.CommentHead > p {
+    margin: 2vh;
+}
+
+.Content {
     padding: 2vh;
-}
-.Header > p {
-    margin: 1vh 3vh;
+    background-color: white;
 }
