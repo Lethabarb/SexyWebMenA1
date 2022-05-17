@@ -1,4 +1,4 @@
-package net.wsm.springmvc.helloworld.config;
+package net.wsm.springmvc.oliver.config;
 
 import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatcherServletInitializer;
 

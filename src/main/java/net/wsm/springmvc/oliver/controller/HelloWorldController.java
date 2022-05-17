@@ -1,10 +1,10 @@
-package net.wsm.springmvc.helloworld.controller;
+package net.wsm.springmvc.oliver.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import net.wsm.springmvc.helloworld.model.*;
+import net.wsm.springmvc.oliver.model.*;
 
 @Controller
 public class HelloWorldController {

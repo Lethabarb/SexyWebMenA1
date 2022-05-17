@@ -1,4 +1,4 @@
-package net.wsm.springmvc.helloworld.config;
+package net.wsm.springmvc.oliver.config;
 /**
  * @author Ramesh Fadatare
  */
@@ -11,7 +11,7 @@ import org.springframework.web.servlet.view.JstlView;
 
 @Configuration
 @EnableWebMvc
-@ComponentScan(basePackages = { "net.wsm.springmvc.helloworld" })
+@ComponentScan(basePackages = { "net.wsm.springmvc.oliver" })
 public class AppConfig {
     @Bean
     public InternalResourceViewResolver resolver() {
