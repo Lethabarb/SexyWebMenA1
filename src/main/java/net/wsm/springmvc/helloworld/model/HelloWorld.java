@@ -1,4 +1,4 @@
-package net.wsm.model;
+package net.wsm.springmvc.helloworld.model;
 
 public class HelloWorld {
     public String x;

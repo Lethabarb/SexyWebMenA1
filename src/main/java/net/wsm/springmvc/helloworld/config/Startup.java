@@ -1,11 +1,11 @@
-package net.wsm.config;
+package net.wsm.springmvc.helloworld.config;
 
 import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatcherServletInitializer;
 
 /**
  * @author Ramesh Fadatare
  */
-public class SpringMvcDispatcherServletInitializer extends AbstractAnnotationConfigDispatcherServletInitializer {
+public class Startup extends AbstractAnnotationConfigDispatcherServletInitializer {
 
     @Override
     protected Class <?> [] getRootConfigClasses() {
