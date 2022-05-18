@@ -8,6 +8,8 @@
         <title>Spring 5 MVC - Hello World Example | javaguides.net</title>
     </head>
    <body>
-      <h2>${helloWorld.x}</h2>
+      <h2>${thisClient.email} <br>
+        ${thisClient.firstname}
+      </h2>
    </body>
 </html>

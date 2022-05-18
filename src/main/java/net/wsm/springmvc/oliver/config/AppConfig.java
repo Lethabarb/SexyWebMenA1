@@ -11,7 +11,7 @@ import org.springframework.web.servlet.view.JstlView;
 
 @Configuration
 @EnableWebMvc
-@ComponentScan(basePackages = { "net.wsm.springmvc.oliver" })
+@ComponentScan(basePackages = { "net.wsm.springmvc.oliver", "net.wsm.springmvc.lachlan" })
 public class AppConfig {
     @Bean
     public InternalResourceViewResolver resolver() {
