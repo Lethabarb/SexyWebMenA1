@@ -11,7 +11,11 @@ public class UserController {
     @RequestMapping("/user")
     public String handler(Model model){
         User u = new User("abc@gmail.com", 1, "Jeff");
+        String penis = "penis";
         model.addAttribute("thisClient", u);
+        model.addAttribute("penis", penis);
+
+
         return "HelloWorld";
     }
     
