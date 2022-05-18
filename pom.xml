@@ -1,9 +1,9 @@
 <project xmlns="https://maven.apache.org/POM/4.0.0" xmlns:xsi="https://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="https://maven.apache.org/POM/4.0.0 https://maven.apache.org/maven-v4_0_0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <groupId>net.wsm</groupId>
-    <artifactId>web-sexy-man</artifactId>
+    <artifactId>wsm</artifactId>
     <packaging>war</packaging>
-    <version>0.0.1-SNAPSHOT</version>
+    <version>app</version>
     <name>SENG2050 group a1</name>
     <url>http://maven.apache.org</url>
     <properties>
