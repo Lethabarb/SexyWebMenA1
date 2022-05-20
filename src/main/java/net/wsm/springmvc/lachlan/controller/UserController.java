@@ -1,8 +1,12 @@
 package net.wsm.springmvc.lachlan.controller;
 
+import java.security.KeyPairGenerator;
+
+import javax.crypto.*;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 
 import net.wsm.springmvc.lachlan.model.*;
 
@@ -11,12 +15,20 @@ public class UserController {
     @RequestMapping("/user")
     public String handler(Model model){
         User u = new User("abc@gmail.com", 1, "Jeff");
-        String penis = "penis";
         model.addAttribute("thisClient", u);
-        model.addAttribute("penis", penis);
 
 
         return "HelloWorld";
     }
+
+    @RequestMapping(value="/submit", method = RequestMethod.POST)
+    public String login(String logindata){
+
+        return "";
+    }
     
+    public KeyPairGenerator encrypt(String password){
+        //KeyPairGenerator kPG = KeyPairGenerator.getInstance(password);
+        return null;
+    }
 }

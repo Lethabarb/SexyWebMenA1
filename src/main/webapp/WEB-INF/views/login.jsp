@@ -1,6 +1,7 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
- pageEncoding="ISO-8859-1"%>
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>    
 <!DOCTYPE html>
 <html>
     <head>
@@ -22,6 +23,22 @@
         </div>
         <div class="Title">
             <h1>Login</h1>
+        </div>
+
+        <div class="loginFormDiv">
+            <form:form method="post" action="UserController">
+                <table>
+                    <tr>
+                        <td> <form:input path="email"/> </td>
+                    </tr>
+                    <tr>
+                        <td><form:input path="password"/></td>
+                    </tr>
+                    <tr>
+                        <td colspan="2"><input type="submit" path="submit"/></td>
+                    </tr>
+                </table>
+            </form:form>
         </div>
 
         <div class="loginFormDiv">
