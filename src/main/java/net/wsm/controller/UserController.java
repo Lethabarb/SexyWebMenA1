@@ -1,14 +1,13 @@
-package net.wsm.springmvc.lachlan.controller;
+package net.wsm.controller;
 
 import java.security.KeyPairGenerator;
 
-import javax.crypto.*;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import net.wsm.springmvc.lachlan.model.*;
+import net.wsm.model.*;
 
 @Controller
 public class UserController {
