@@ -13,17 +13,7 @@ import net.wsm.model.*;
 
 @Controller
 public class UserController {
-
-    public Connection getDbConnection() {
-        try {
-            Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
-            Connection c = DriverManager.getConnection("jdbc:sqlserver://localhost;integratedSecurity=true;");
-            return c;
-        } catch (Exception e) {
-            System.out.println(e.getMessage());
-            return null;
-        }
-    }
+    
 
     @RequestMapping("/test")
     public String test(Model model) {
@@ -33,8 +23,8 @@ public class UserController {
             Statement s = c.createStatement();
             ResultSet res = s.executeQuery("SELECT * FROM [User]");
             res.next();
-            u = new User(res.getString(0), res.getInt(1), res.getString(2), res.getString(3), res.getString(4),
-                    res.getString(5), LocalDateTime.parse(res.getString(6)));
+            u = new User(res.getString("email"), res.getInt("role"), res.getString("authToken"), res.getString("firstName"), res.getString("lastName"),
+                    res.getString("contactNumber"), LocalDateTime.now());
         } catch (Exception e) {
             u = new User(e.getMessage(), 1, "Jeff");
         }
