@@ -6,7 +6,6 @@ import javax.persistence.*;
 @Entity
 @Table(name="User")
 public class User{
-    @Id
     @Column(name="email")
     private String email;
     @Column(name="role")
@@ -40,6 +39,10 @@ public class User{
         this.email = email;
         this.role = role;
         this.firstname = firstname;
+        this.surname = "";
+        this.authToken = "";
+        this.contactNumber = "";
+        this.tokenExpiry = LocalDateTime.now();
     }
 
     public String getFirstname(){

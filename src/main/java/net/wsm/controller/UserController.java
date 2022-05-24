@@ -10,25 +10,33 @@ import java.sql.*;
 import java.time.LocalDateTime;
 
 import net.wsm.model.*;
+import net.wsm.repository.UserRepository;
 
 @Controller
 public class UserController {
-    
+    private UserRepository repository = new UserRepository();
 
-    @RequestMapping("/test")
-    public String test(Model model) {
-        Connection c = getDbConnection();
-        User u = new User();
-        try {
-            Statement s = c.createStatement();
-            ResultSet res = s.executeQuery("SELECT * FROM [User]");
-            res.next();
-            u = new User(res.getString("email"), res.getInt("role"), res.getString("authToken"), res.getString("firstName"), res.getString("lastName"),
-                    res.getString("contactNumber"), LocalDateTime.now());
-        } catch (Exception e) {
-            u = new User(e.getMessage(), 1, "Jeff");
-        }
-        model.addAttribute("thisClient", u);
+    @RequestMapping("/testCreate")
+    public String testCreate(Model m) {
+        User u = new User("testCreate@wsm", 1, "oli");
+        repository.createUser(u);
+        User u2 = repository.getByEmail(u.getEmail());
+        m.addAttribute("thisClient", u2);
+        return "HelloWorld";
+    }
+    
+    @RequestMapping("/testEdit")
+    public String testEdit(Model m) {
+        User u = new User("testUpate@wsm", 1, "oli");
+        repository.updateUser(u, "testCreate@wsm");
+        User u2 = repository.getByEmail(u.getEmail());
+        m.addAttribute("thisClient", u2);
+        return "HelloWorld";
+    }
+
+    @RequestMapping("/testDelete")
+    public String testDelete(Model m) {
+        repository.deleteUser("testUpdate@wsm");
         return "HelloWorld";
     }
 
