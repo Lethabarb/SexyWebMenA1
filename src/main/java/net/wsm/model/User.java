@@ -1,21 +1,31 @@
 package net.wsm.model;
 
 import java.time.LocalDateTime;
+import javax.persistence.*;
 
+@Entity
+@Table(name="User")
 public class User{
+    @Column(name="email")
     private String email;
+    @Column(name="role")
     private int role; //1 for staff, 0 for user.
+    @Column(name="firstName")
     private String firstname;
+    @Column(name="lastName")
     private String surname;
+    @Column(name="contactNumber")
     private String contactNumber;
+    @Column(name="authToken")
     private String authToken;
+    @Column(name="tokenExp")
     private LocalDateTime tokenExpiry;
 
     public User(){
 
     }
 
-    public User(String email, int role, String authToken, LocalDateTime tokenExpiry, String firstname, String surname, String contactNumber){
+    public User(String email, int role, String authToken, String firstname, String surname, String contactNumber,LocalDateTime tokenExpiry){
         this.email = email;
         this.role = role;
         this.authToken = authToken;
@@ -29,6 +39,10 @@ public class User{
         this.email = email;
         this.role = role;
         this.firstname = firstname;
+        this.surname = "";
+        this.authToken = "";
+        this.contactNumber = "";
+        this.tokenExpiry = LocalDateTime.now();
     }
 
     public String getFirstname(){

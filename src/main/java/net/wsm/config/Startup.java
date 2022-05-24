@@ -9,7 +9,6 @@ public class Startup extends AbstractAnnotationConfigDispatcherServletInitialize
 
     @Override
     protected Class <?> [] getRootConfigClasses() {
-        // TODO Auto-generated method stub
         return null;
     }
 
