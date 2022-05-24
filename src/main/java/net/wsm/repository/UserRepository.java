@@ -104,7 +104,7 @@ public class UserRepository {
         }
         if (!user.getTokenExpiry().equals(old.getTokenExpiry())) {
             if (!first) query += ", ";
-            query += String.format("tokenExp = '%s'", user.getTokenExpiry());
+            query += String.format("tokenExp = '%s'", java.sql.Date.valueOf(user.getTokenExpiry().toLocalDate()));
             first = false;
         }
         query += String.format(" WHERE email = '%s'", old.getEmail());
