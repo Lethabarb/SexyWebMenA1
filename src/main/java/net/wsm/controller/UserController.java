@@ -17,8 +17,7 @@ public class UserController {
     public Connection getDbConnection() {
         try {
             Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
-            Connection c = DriverManager.getConnection("jdbc:sqlserver://OOGWAY\\OOGWAY;databaseName=wsm",
-                    "adminLogin", "admin");
+            Connection c = DriverManager.getConnection("jdbc:sqlserver://localhost;integratedSecurity=true;");
             return c;
         } catch (Exception e) {
             System.out.println(e.getMessage());
