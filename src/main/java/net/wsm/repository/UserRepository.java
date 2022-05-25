@@ -11,26 +11,29 @@ public class UserRepository {
     private DbContext context = new DbContext();
     private Connection con = context.getDbConnection();
 
-    public synchronized ArrayList<User> getAll() {
-        ArrayList<User> list = new ArrayList<>();
-        ResultSet res;
-        try {
-            Statement req = con.createStatement();
-            res = req.executeQuery("SELECT * FROM [User]");
-            while (res.next()) {
-                User u = new User(res.getString(1),
-                        res.getInt(2),
-                        res.getString(3),
-                        res.getString(4),
-                        res.getString(5),
-                        res.getString(6),
-                        res.getTimestamp(7).toLocalDateTime());
-                list.add(u);
-            }
-        } catch (SQLException e) {
-            System.out.println(e.getMessage());
-        }
-        return list;
+    public synchronized User[] getAll() {
+        // ArrayList<User> list = new ArrayList<>();
+        // ResultSet res;
+        // try {
+        //     Statement req = con.createStatement();
+        //     res = req.executeQuery("SELECT * FROM [User]");
+        //     while (res.next()) {
+        //         User u = new User(res.getString(1),
+        //                 res.getInt(2),
+        //                 res.getString(3),
+        //                 res.getString(4),
+        //                 res.getString(5),
+        //                 res.getString(6),
+        //                 res.getTimestamp(7).toLocalDateTime());
+        //         list.add(u);
+        //     }
+        // } catch (SQLException e) {
+        //     System.out.println(e.getMessage());
+        // }
+        // list = context.getAsync(list.getClass());
+        User[] users = context.getAsync(User.class);
+        System.out.println(users.length);
+        return context.getAsync(User.class);
     }
 
     public synchronized User getByEmail(String email) {

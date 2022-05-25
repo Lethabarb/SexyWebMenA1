@@ -19,7 +19,7 @@ public class User{
     @Column(name="authToken")
     private String authToken;
     @Column(name="tokenExp")
-    private LocalDateTime tokenExpiry;
+    public LocalDateTime tokenExp;
 
     public User(){
 
@@ -29,7 +29,7 @@ public class User{
         this.email = email;
         this.role = role;
         this.authToken = authToken;
-        this.tokenExpiry = tokenExpiry;
+        this.tokenExp = tokenExpiry;
         this.firstname = firstname;
         this.surname = surname;
         this.contactNumber = contactNumber;
@@ -42,7 +42,7 @@ public class User{
         this.surname = "";
         this.authToken = "";
         this.contactNumber = "";
-        this.tokenExpiry = LocalDateTime.now();
+        this.tokenExp = LocalDateTime.now();
     }
 
     public String getFirstname(){
@@ -99,10 +99,10 @@ public class User{
     }
 
     public LocalDateTime getTokenExpiry(){
-        return tokenExpiry;
+        return tokenExp;
     }
 
     public void setTokenExpiry(LocalDateTime tE){
-        tokenExpiry = tE;
+        tokenExp = tE;
     }
 }

@@ -16,29 +16,14 @@ import net.wsm.repository.UserRepository;
 public class UserController {
     private UserRepository repository = new UserRepository();
 
-    @RequestMapping("/testCreate")
-    public String testCreate(Model m) {
-        User u = new User("testCreate@wsm", 1, "oli");
-        repository.createUser(u);
-        User u2 = repository.getByEmail(u.getEmail());
-        m.addAttribute("thisClient", u2);
+    @RequestMapping("/test")
+    public String test(Model m) {
+        User[] users = repository.getAll();
+        m.addAttribute("thisClient", users[0]);
         return "HelloWorld";
     }
     
-    @RequestMapping("/testEdit")
-    public String testEdit(Model m) {
-        User u = new User("testUpate@wsm", 1, "oli");
-        repository.updateUser(u, "testCreate@wsm");
-        User u2 = repository.getByEmail(u.getEmail());
-        m.addAttribute("thisClient", u2);
-        return "HelloWorld";
-    }
 
-    @RequestMapping("/testDelete")
-    public String testDelete(Model m) {
-        repository.deleteUser("testUpdate@wsm");
-        return "HelloWorld";
-    }
 
     @RequestMapping("/user")
     public String handler(Model model) {
