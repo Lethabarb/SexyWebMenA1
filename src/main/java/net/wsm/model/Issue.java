@@ -6,40 +6,46 @@ import java.util.UUID;
 
 import org.springframework.cglib.core.Local;
 
-public class Article {
+public class Issue {
     private String id;
     private String title;
     private String description;
     private String solution = "";
     private LocalDateTime opened;
+    private LocalDateTime closed;
     private String catagory;
     private String subCatagory;
+    private String reporterId;
     private ArrayList<Comment> comments = new ArrayList<>();
-    public Article() {}
-    public Article(String t, String d, String s, String c, String sc) {
+    public Issue() {}
+    public Issue(String t, String d, String s, String c, String sc, String r) {
         title = t;
         description = d;
         solution = s;
         id = UUID.randomUUID().toString();
         catagory = c;
         subCatagory = sc;
+        reporterId = r;
     }
-    public Article(String t, String d, String s, String i, String c, String sc) {
+    public Issue(String i, String t, String d, String s, String c, String sc, String r) {
         title = t;
         description = d;
         solution = s;
         id = i;
         catagory = c;
         subCatagory = sc;
+        reporterId = r;
     }
-    public Article(String t, String d, String s, String i, String c, String sc, LocalDateTime dt) {
+    public Issue(String i, String t, String d, String s, LocalDateTime op, LocalDateTime cl, String c, String sc, String r) {
         title = t;
         description = d;
         solution = s;
         id = i;
         catagory = c;
         subCatagory = sc;
-        opened = dt;
+        opened = op;
+        closed = cl;
+        reporterId = r;
     }
 
     public void setTitle(String t) {
@@ -69,6 +75,12 @@ public class Article {
     public LocalDateTime getDateOpened() {
         return opened;
     }
+    public void setDateClosed(LocalDateTime d) {
+        closed = d;
+    }
+    public LocalDateTime getDateClosed() {
+        return closed;
+    }
     public void addComment(Comment c) {
         comments.add(c);
     }
@@ -92,5 +104,11 @@ public class Article {
     }
     public String getId() {
         return id;
+    }
+    public void setReporterId(String id) {
+        reporterId = id;
+    }
+    public String getReportedId() {
+        return reporterId;
     }
 }
