@@ -1,5 +1,6 @@
 package net.wsm.controller;
 
+import java.nio.ReadOnlyBufferException;
 import java.security.KeyPairGenerator;
 
 import org.springframework.stereotype.Controller;
@@ -18,8 +19,11 @@ public class UserController {
 
     @RequestMapping("/test")
     public String test(Model m) {
-        User[] users = repository.getAll();
-        m.addAttribute("thisClient", users[0]);
+        User e = new User("database", 1, "spongebob");
+        repository.createUser(e);
+        e = repository.getByEmail("database");
+        m.addAttribute("thisClient", e);
+        repository.deleteUser("database");
         return "HelloWorld";
     }
     

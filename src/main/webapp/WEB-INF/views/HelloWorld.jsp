@@ -9,7 +9,7 @@
     </head>
    <body>
       <h2>${thisClient.email} <br>
-        ${thisClient.firstname}
+        ${thisClient.firstName}
       </h2>
    </body>
 </html>
