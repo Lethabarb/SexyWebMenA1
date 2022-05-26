@@ -1,5 +1,7 @@
 package net.wsm.model;
 
+import java.sql.Date;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.UUID;
@@ -15,11 +17,11 @@ public class Issue {
     private LocalDateTime closed;
     private String catagory;
     private String subCatagory;
-    private String reporterId;
+    private int reporterId;
     private int status;
     private ArrayList<Comment> comments = new ArrayList<>();
     public Issue() {}
-    public Issue(String t, String d, String s, String c, String sc, String r) {
+    public Issue(String t, String d, String s, String c, String sc, int r) {
         title = t;
         description = d;
         solution = s;
@@ -28,7 +30,7 @@ public class Issue {
         subCatagory = sc;
         reporterId = r;
     }
-    public Issue(String i, String t, String d, String s, String c, String sc, String r) {
+    public Issue(String i, String t, String d, String s, String c, String sc, int r) {
         title = t;
         description = d;
         solution = s;
@@ -37,7 +39,7 @@ public class Issue {
         subCatagory = sc;
         reporterId = r;
     }
-    public Issue(String i, String t, String d, String s, LocalDateTime op, LocalDateTime cl, String c, String sc, String r) {
+    public Issue(String i, String t, String d, String s, LocalDateTime op, LocalDateTime cl, String c, String sc, int r) {
         title = t;
         description = d;
         solution = s;
@@ -76,6 +78,9 @@ public class Issue {
     public LocalDateTime getDateOpened() {
         return opened;
     }
+    public String getDateOpenedString() {
+        return opened.toLocalDate().toString();
+    }
     public void setDateClosed(LocalDateTime d) {
         closed = d;
     }
@@ -106,10 +111,10 @@ public class Issue {
     public String getId() {
         return id;
     }
-    public void setReporterId(String id) {
+    public void setReporterId(int id) {
         reporterId = id;
     }
-    public String getReportedId() {
+    public int getReporterId() {
         return reporterId;
     }
     public void setStatus(int s) {
@@ -120,5 +125,8 @@ public class Issue {
     }
     public int getStatus() {
         return status;
+    }
+    public String toString() {
+        return String.format("USER: \n id: %s \n title: %s \n desc: %s \n soln: %s \n reporter: %s \n opened: %s \n closed: %s \n cat: %s \n subcat: %s \n status: %s  ", id, title, description, solution, reporterId, opened.toString(), closed.toString(), catagory, subCatagory, status);
     }
 }
