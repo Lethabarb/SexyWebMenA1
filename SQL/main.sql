@@ -31,7 +31,7 @@ CREATE TABLE [Issue]
 GO
 CREATE TABLE [Article]
 (
-    [id] INT PRIMARY KEY IDENTITY (1,1),
+    [id] UNIQUEIDENTIFIER PRIMARY KEY,
     [title] NVARCHAR(MAX),
     [description] NVARCHAR(MAX),
     [solution] NVARCHAR(MAX),
@@ -43,8 +43,21 @@ GO
 CREATE TABLE [Comment]
 (
     [id] UNIQUEIDENTIFIER PRIMARY KEY,
-    [commenter] NVARCHAR(MAX) FOREIGN KEY REFERENCES [User].[email],
+    [parent] NVARCHAR(MAX) FOREIGN KEY REFERENCES [Comment].[id],
+    [author] NVARCHAR(MAX) FOREIGN KEY REFERENCES [User].[email],
+    [date] DATETIME,
     [content] NVARCHAR(MAX)
+)
+CREATE TABLE [EntityComment]
+(
+    [comment] UNIQUEIDENTIFIER,
+    [entity] UNIQUEIDENTIFIER,
+    [type] NVARCHAR(1)
+    -- I for issue, A for KB and C for comment
+)
+CREATE TABLE [Issue]
+(
+    
 )
 
 INSERT INTO [User] VALUES ('1@test',0,'test1','1','001','auth1','2022-05-01 12:00:00')
