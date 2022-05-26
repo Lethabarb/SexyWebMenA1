@@ -31,33 +31,6 @@
     </div>
     <div class="Center">
         <div class="FlexBox">
-            <c:forEach var="i" begin="0" end="${issues.length}">
-                <table class="FlexTable">
-                    <tr class="FlexRow">
-                        <th>
-                            <p>${issues[i].id}</p>
-                        </th>
-                        <th>
-                            <p>${issues[i].title}</p>
-                        </th>
-                        <th>
-                            <p>${reporter.email}</p>
-                        </th>
-                        <th>
-                            <p>${issues[i].catagory}</p>
-                        </th>
-                        <th>
-                            <p>${issues[i].subCatagory}</p>
-                        </th>
-                        <th>
-                            <p>${issues[i].opened}</p>
-                        </th>
-                        <th>
-                            <p>${issues[i].status}</p>
-                        </th>
-                    </tr>
-                </table>
-            </c:forEach>
             <table class="FlexTable">
                 <tr class="FlexRow">
                     <th>
@@ -83,136 +56,57 @@
                     </th>
                 </tr>
             </table>
-            <table class="FlexTable">
-                <tr class="FlexRow Status0body">
-                    <td>
-                        <a href="Issue.html">Id</a>
-                    </td>
-                    <td>
-                        <p>Title</p>
-                    </td>
-
-                    <td>
-                        <p>Reporter</p>
-                    </td>
-                    <td>
-                        <p>Catagory</p>
-                    </td>
-                    <td>
-                        <p>Sub-Catagory</p>
-                    </td>
-                    <td>
-                        <p>Date</p>
-                    </td>
-                    <td class="Status0">
-                        <p>Status</p>
-                    </td>
-                </tr>
-            </table>
-            <table class="FlexTable">
-                <tr class="FlexRow Status1body">
-                    <td>
-                        <a href="Issue.html">Id</a>
-                    </td>
-                    <td>
-                        <p>Title</p>
-                    </td>
-
-                    <td>
-                        <p>Reporter</p>
-                    </td>
-                    <td>
-                        <p>Catagory</p>
-                    </td>
-                    <td>
-                        <p>Sub-Catagory</p>
-                    </td>
-                    <td>
-                        <p>Date</p>
-                    </td>
-                    <td class="Status1">
-                        <p>Status</p>
-                    </td>
-                </tr>
-            </table>
-            <table class="FlexTable">
-                <tr class="FlexRow Status2body">
-                    <td>
-                        <a href="Issue.html">Id</a>
-                    </td>
-                    <td>
-                        <p>Title</p>
-                    </td>
-
-                    <td>
-                        <p>Reporter</p>
-                    </td>
-                    <td>
-                        <p>Catagory</p>
-                    </td>
-                    <td>
-                        <p>Sub-Catagory</p>
-                    </td>
-                    <td>
-                        <p>Date</p>
-                    </td>
-                    <td  class="Status2">
-                        <p>Status</p>
-                    </td>
-                </tr>
-            </table>
-            <table class="FlexTable">
-                <tr class="FlexRow Status3body">
-                    <td>
-                        <a href="Issue.html">Id</a>
-                    </td>
-                    <td>
-                        <p>Title</p>
-                    </td>
-
-                    <td>
-                        <p>Reporter</p>
-                    </td>
-                    <td>
-                        <p>Catagory</p>
-                    </td>
-                    <td>
-                        <p>Sub-Catagory</p>
-                    </td>
-                    <td>
-                        <p>Date</p>
-                    </td>
-                    <td class="Status3">
-                        <p>Status</p>
-                    </td>
-                </tr>
-            </table>
-            <table class="FlexTable">
-                <tr class="FlexRow Status4body">
-                    <td>
-                        <a href="Issue.html">Id</a>
-                    </td>
-                    <td>
-                        <p>Title</p>
-                    </td>
-
-                    <td>
-                        <p>Reporter</p>
-                    </td>
-                    <td>
-                        <p>Catagory</p>
-                    </td>
-                    <td>
-                        <p>Sub-Catagory</p>
-                    </td>
-                    <td>
-                        <p>Date</p>
-                    </td>
-                    <td class="Status4">
-                        <p>Status</p>
-                    </td>
-                </tr>
-            </table>
+            <c:forEach var="issue" items="${issues}">
+                <table class="FlexTable">
+                    <tr class="FlexRow">
+                        <td>
+                            <p>${issue.id}</p>
+                        </td>
+                        <td>
+                            <p>${issue.title}</p>
+                        </td>
+                        <td>
+                            <p>${issueMap.get(issue).email}</p>
+                        </td>
+                        <td>
+                            <p>${issue.catagory}</p>
+                        </td>
+                        <td>
+                            <p>${issue.subCatagory}</p>
+                        </td>
+                        <td>
+                            <p>${issue.getDateOpenedString()}</p>
+                        </td>
+                        <td class="Status${issue.status}">
+                            <c:if test = "${issue.status == 0}">
+                            <p>
+                                Submitted
+                            </p>
+                            </c:if>
+                            <c:if test = "${issue.status == 1}">
+                            <p>
+                                In Progress
+                            </p>
+                            </c:if>
+                            <c:if test = "${issue.status == 2}">
+                            <p>
+                                Solution
+                            </p>
+                            </c:if>
+                            <c:if test = "${issue.status == 3}">
+                            <p>
+                                Accepted
+                            </p>
+                            </c:if>
+                            <c:if test = "${issue.status == 4}">
+                            <p>
+                                Rejected
+                            </p>
+                            </c:if>
+                        </td>
+                    </tr>
+                </table>
+            </c:forEach>
         </div>
     </div>
     </div>

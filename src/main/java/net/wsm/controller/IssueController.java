@@ -9,32 +9,33 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import java.sql.*;
 import java.time.LocalDateTime;
+import java.util.HashMap;
 
 import net.wsm.model.*;
+import net.wsm.repository.IssueRepository;
 import net.wsm.repository.UserRepository;
 
 @Controller
 public class IssueController {
-    private UserRepository repository = new UserRepository();
+    private IssueRepository repository = new IssueRepository();
+    private UserRepository userRepos = new UserRepository();
     
-
-
-    @RequestMapping("/user")
+    @RequestMapping("/issues")
     public String handler(Model model) {
-        User u = new User("abcd@gmail.com", 1, "Jeff");
-        model.addAttribute("thisClient", u);
-
-        return "HelloWorld";
-    }
-
-    @RequestMapping(value = "/submit", method = RequestMethod.POST)
-    public String login(String logindata) {
-
-        return "";
-    }
-
-    public KeyPairGenerator encrypt(String password) {
-        // KeyPairGenerator kPG = KeyPairGenerator.getInstance(password);
-        return null;
+        Issue[] issues = repository.getAll();
+        User[] users = userRepos.getAll();
+        HashMap<Issue, User> issueMap = new HashMap<>();
+        for (Issue issue : issues) {
+            System.out.println(issue.toString());
+            User u;
+            for (User user : users) {
+                if (issue.getReporterId() == user.getId()) {
+                    issueMap.put(issue, user);
+                }
+            }
+        }
+        model.addAttribute("issueMap", issueMap);
+        model.addAttribute("issues", issues);
+        return "issues";
     }
 }
