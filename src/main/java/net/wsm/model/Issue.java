@@ -6,15 +6,13 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.UUID;
 
-import org.springframework.cglib.core.Local;
-
 public class Issue {
     private String id;
     private String title;
     private String description;
     private String solution = "";
-    private LocalDateTime opened;
-    private LocalDateTime closed;
+    private LocalDateTime dateOpened;
+    private LocalDateTime dateClosed;
     private String catagory;
     private String subCatagory;
     private int reporterId;
@@ -46,8 +44,8 @@ public class Issue {
         id = i;
         catagory = c;
         subCatagory = sc;
-        opened = op;
-        closed = cl;
+        dateOpened = op;
+        dateClosed = cl;
         reporterId = r;
     }
 
@@ -73,19 +71,19 @@ public class Issue {
         return solution;
     }
     public void setDateOpened(LocalDateTime d) {
-        opened = d;
+        dateOpened = d;
     }
     public LocalDateTime getDateOpened() {
-        return opened;
+        return dateOpened;
     }
     public String getDateOpenedString() {
-        return opened.toLocalDate().toString();
+        return dateOpened.toLocalDate().toString();
     }
     public void setDateClosed(LocalDateTime d) {
-        closed = d;
+        dateClosed = d;
     }
     public LocalDateTime getDateClosed() {
-        return closed;
+        return dateClosed;
     }
     public void addComment(Comment c) {
         comments.add(c);
@@ -127,6 +125,6 @@ public class Issue {
         return status;
     }
     public String toString() {
-        return String.format("USER: \n id: %s \n title: %s \n desc: %s \n soln: %s \n reporter: %s \n opened: %s \n closed: %s \n cat: %s \n subcat: %s \n status: %s  ", id, title, description, solution, reporterId, opened.toString(), closed.toString(), catagory, subCatagory, status);
+        return String.format("USER: \n id: %s \n title: %s \n desc: %s \n soln: %s \n reporter: %s \n dateOpened: %s \n dateClosed: %s \n cat: %s \n subcat: %s \n status: %s  ", id, title, description, solution, reporterId, dateOpened.toString(), dateClosed.toString(), catagory, subCatagory, status);
     }
 }
