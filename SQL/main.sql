@@ -33,7 +33,7 @@ CREATE TABLE [Issue]
 GO
 CREATE TABLE [Article]
 (
-    [id] UNIQUEIDENTIFIER PRIMARY KEY,
+    [id] INT PRIMARY KEY IDENTITY(1,1),
     [title] NVARCHAR(MAX),
     [description] NVARCHAR(MAX),
     [solution] NVARCHAR(MAX),
@@ -69,3 +69,10 @@ INSERT INTO [Issue] VALUES ('issue2','2desc','2solut', 2, '2022-05-26 16:23:00',
 INSERT INTO [Issue] VALUES ('issue3','3desc','3solut', 3, '2022-05-26 16:23:00', '1000-01-01 00:00:00', 'cat', 'subcat', 2)
 INSERT INTO [Issue] VALUES ('issue4','4desc','4solut', 4, '2022-05-26 16:23:00', '1000-01-01 00:00:00', 'cat', 'subcat', 3)
 INSERT INTO [Issue] VALUES ('issue5','5desc','5solut', 5, '2022-05-26 16:23:00', '1000-01-01 00:00:00', 'cat', 'subcat', 4)
+
+INSERT INTO [Article] VALUES ('KB1', 'desc', 'soln', '2022-05-26 21:41:00', 'cat', 'subcat')
+INSERT INTO [Article] VALUES ('KB2', 'desc', 'soln', '2022-05-26 21:41:00', 'cat', 'subcat')
+INSERT INTO [Article] VALUES ('KB3', 'desc', 'soln', '2022-05-26 21:41:00', 'cat', 'subcat')
+INSERT INTO [Article] VALUES ('KB4', 'desc', 'soln', '2022-05-26 21:41:00', 'cat', 'subcat')
+INSERT INTO [Article] VALUES ('KB5', 'desc', 'soln', '2022-05-26 21:41:00', 'cat', 'subcat')
+INSERT INTO [Article] VALUES ('KB6', 'desc', 'soln', '2022-05-26 21:41:00', 'cat', 'subcat')
