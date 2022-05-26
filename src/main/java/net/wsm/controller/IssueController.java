@@ -37,10 +37,24 @@ public class IssueController {
                 //return "error";
                 System.out.println("error!");
             }
-            repository.createIssue(issue);
-            
-            //handler stuff here I guess
+            Issue newIssue = new Issue(issue.getTitle(), issue.getDescription(),
+                "sol", issue.getCatagory(), "sc", 0001);
+            repository.createIssue(newIssue);
 
+            Issue[] issues = repository.getAll();
+            User[] users = userRepos.getAll();
+            HashMap<Issue, User> issueMap = new HashMap<>();
+            for (Issue i : issues) {
+                System.out.println(i.toString());
+                User u;
+                for (User user : users) {
+                    if (i.getReporterId() == user.getId()) {
+                        issueMap.put(i, user);
+                    }
+                }
+            }
+            model.addAttribute("issueMap", issueMap);
+            model.addAttribute("issues", issues);
             return "issues";
         }
 
