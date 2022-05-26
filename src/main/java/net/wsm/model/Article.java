@@ -11,7 +11,7 @@ public class Article {
     private String title;
     private String description;
     private String solution = "";
-    private LocalDateTime opened;
+    private LocalDateTime dateOpened;
     private String catagory;
     private String subCatagory;
     private ArrayList<Comment> comments = new ArrayList<>();
@@ -39,7 +39,7 @@ public class Article {
         id = i;
         catagory = c;
         subCatagory = sc;
-        opened = dt;
+        dateOpened = dt;
     }
 
     public void setTitle(String t) {
@@ -64,10 +64,10 @@ public class Article {
         return solution;
     }
     public void setDateOpened(LocalDateTime d) {
-        opened = d;
+        dateOpened = d;
     }
     public LocalDateTime getDateOpened() {
-        return opened;
+        return dateOpened;
     }
     public void addComment(Comment c) {
         comments.add(c);
