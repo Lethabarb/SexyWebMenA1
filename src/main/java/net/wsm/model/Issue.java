@@ -16,6 +16,7 @@ public class Issue {
     private String catagory;
     private String subCatagory;
     private String reporterId;
+    private int status;
     private ArrayList<Comment> comments = new ArrayList<>();
     public Issue() {}
     public Issue(String t, String d, String s, String c, String sc, String r) {
@@ -110,5 +111,14 @@ public class Issue {
     }
     public String getReportedId() {
         return reporterId;
+    }
+    public void setStatus(int s) {
+        status = s;
+    }
+    public void incrementStatus() {
+        status++;
+    }
+    public int getStatus() {
+        return status;
     }
 }

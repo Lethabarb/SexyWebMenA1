@@ -14,8 +14,10 @@ import net.wsm.model.*;
 import net.wsm.repository.UserRepository;
 
 @Controller
-public class UserController {
+public class IssueController {
     private UserRepository repository = new UserRepository();
+    
+
 
     @RequestMapping("/user")
     public String handler(Model model) {

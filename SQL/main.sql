@@ -26,7 +26,8 @@ CREATE TABLE [Issue]
     [dateOpened] DATETIME,
     [dateClosed] DATETIME,
     [catagory] NVARCHAR(MAX),
-    [subCatagory] NVARCHAR(MAX)
+    [subCatagory] NVARCHAR(MAX),
+    [status] INT
 )
 GO
 CREATE TABLE [Article]
