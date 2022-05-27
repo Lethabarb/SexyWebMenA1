@@ -19,10 +19,10 @@ import net.wsm.filters.AuthorizeFilter;
 
 @Configuration
 @EnableWebMvc
-@ComponentScan(basePackages = { "net.wsm"  })
+@ComponentScan(basePackages = { "net.wsm", "net.wsm.filters"  })
 public class AppConfig {
 
-    private AuthorizeFilter authorizeFilter;
+    // private AuthorizeFilter authorizeFilter;
 
     @Bean
     public InternalResourceViewResolver resolver() {
@@ -33,18 +33,27 @@ public class AppConfig {
         return resolver;
     }
 
-    @Autowired
-    public AppConfig(AuthorizeFilter authorizeFilter){
-        this.authorizeFilter = authorizeFilter;
-    }
+    // @Bean
+    // public FilterRegistrationBean requestAuthorizeFilterBean() {
+    //     AuthorizeFilter authorizeFilter=new AuthorizeFilter();
+    //     final FilterRegistrationBean reg = new FilterRegistrationBean(authorizeFilter);
+    //     reg.addUrlPatterns("/*");
+    //     reg.setOrder(0); //defines filter execution order
+    //     return reg;
+    // }
 
-    @Bean
-    public FilterRegistrationBean<AuthorizeFilter> AuthorizationFilterRegistration(){
-        FilterRegistrationBean<AuthorizeFilter> filterRegistrationBean = new FilterRegistrationBean<>();
-        filterRegistrationBean.setFilter(authorizeFilter);
-        filterRegistrationBean.setUrlPatterns(Collections.singletonList("/login"));
-        filterRegistrationBean.setDispatcherTypes(DispatcherType.REQUEST);
-        filterRegistrationBean.setOrder(1);
-        return filterRegistrationBean;
-    }
+    // @Autowired
+    // public AppConfig(AuthorizeFilter authorizeFilter){
+    //     this.authorizeFilter = authorizeFilter;
+    // }
+
+    // @Bean
+    // public FilterRegistrationBean<AuthorizeFilter> AuthorizationFilterRegistration(){
+    //     FilterRegistrationBean<AuthorizeFilter> filterRegistrationBean = new FilterRegistrationBean<>();
+    //     filterRegistrationBean.setFilter(authorizeFilter);
+    //     filterRegistrationBean.setUrlPatterns(Collections.singletonList("/account/*"));
+    //     filterRegistrationBean.setDispatcherTypes(DispatcherType.REQUEST);
+    //     filterRegistrationBean.setOrder(1);
+    //     return filterRegistrationBean;
+    // }
 }
