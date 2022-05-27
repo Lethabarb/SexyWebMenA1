@@ -17,7 +17,7 @@ import net.wsm.repository.UserRepository;
 public class UserController {
     private UserRepository repository = new UserRepository();
 
-    @RequestMapping("/test")
+    @RequestMapping("/admin/test")
     public String test(Model m) {
         User[] users = repository.getAll();
         m.addAttribute("thisClient", users[0]);
@@ -36,7 +36,7 @@ public class UserController {
     public String authorize(HttpSession session, String pageAccessing){
         User u = (User)session.getAttribute("thisClient");
         if(u.getRole() > 0){
-            
+
         }
         return pageAccessing;
     }

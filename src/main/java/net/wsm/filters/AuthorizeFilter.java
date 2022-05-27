@@ -6,7 +6,10 @@ import javax.servlet.*;
 import javax.servlet.annotation.WebFilter;
 import javax.servlet.http.HttpServletRequest;
 
-@WebFilter(filterName = "authorizeFilter", urlPatterns = "/*")
+import net.wsm.model.User;
+import net.wsm.model.loginModel;
+
+@WebFilter(filterName = "authorizeFilter", urlPatterns = "/admin/*")
 public class AuthorizeFilter implements Filter {
   
   @Override
@@ -20,6 +23,12 @@ public class AuthorizeFilter implements Filter {
       System.out.println("-- In MyFilter --");
       HttpServletRequest req = (HttpServletRequest) request;
       System.out.println("URI: " + req.getRequestURI());
+      User u = (User)req.getSession().getAttribute("thisClient");
+    //   loginModel lg = new loginModel("Jeff@gmail.com", "password");
+    //     System.out.println(lg.getPassword());
+      if(u.getRole() <= 0){
+          return;
+      }
       chain.doFilter(request, response);
   }
   

@@ -19,14 +19,17 @@ public class LoginController{
     @RequestMapping(value = "/login", method = RequestMethod.GET)
     public String init(Model model){
         model.addAttribute("message", "Please Enter Login Details");
+        
         return "login";
     }
 
     @PostMapping("/createLogin")
     public String submit(Model model, @ModelAttribute("loginModel") loginModel loginModel, HttpSession session){
-
+        System.out.println(loginModel.getEmail());
+        System.out.println("Password: " + loginModel.getPassword());
         if(loginModel != null && loginModel.getPassword() != null && loginModel.getEmail() != null){
             User loginUser = repository.getByEmail(loginModel.getEmail()); //check if password matches
+            System.out.println("loginUser password: " + loginUser.getPassword());
             if(loginModel.getPassword().equals(loginUser.getPassword())){
                 model.addAttribute("loggedIn", loginUser);
                 session.setAttribute("thisClient", loginUser);
@@ -34,10 +37,12 @@ public class LoginController{
             }
             else{
                 model.addAttribute("error", "Invalid email or password");
+                System.out.println("Error: Invalid email or password");
                 return "login";
             }
         }
         model.addAttribute("error", "Please input details");
+        System.out.println("Error: please input details");
         return "login";
     }
 

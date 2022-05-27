@@ -7,7 +7,7 @@ public class loginModel {
     private String email;
     private String password;
 
-    loginModel(String email, String password){
+    public loginModel(String email, String password){
         this.email=email;
         this.password=hash(password);
     }

@@ -26,7 +26,7 @@
         </div>
 
         <div class="loginFormDiv">
-            <form:form method="POST" name="loginForm" action="/createLogin">
+            <form:form method="POST" name="loginForm" action="createLogin">
                 <table>
                     <tr>
                         <td>Email: </td>
@@ -43,14 +43,14 @@
             </form:form>
         </div>
 
-        <div class="loginFormDiv">
+        <%-- <div class="loginFormDiv">
             <form method="post" action="" style="width:fit-content" name="loginForm"> <!--need to add action-->
                 <input id="email" name="email" type="text" placeholder="Email here"><br><br>
                 <input id="password" name="password" type="text" placeholder="Password here"> <br><br>
     
                 <input type="submit" value="Submit" onsubmit="return Validate()">
             </form>
-        </div>
+        </div> --%>
         
     <script>
 
