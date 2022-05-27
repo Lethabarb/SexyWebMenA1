@@ -1,6 +1,5 @@
 package net.wsm.controller;
 //when it is working, PULL REQUEST
-import java.security.KeyPairGenerator;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -8,6 +7,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import java.sql.*;
 import java.time.LocalDateTime;
+
+import javax.servlet.http.HttpSession;
 
 import net.wsm.model.*;
 import net.wsm.repository.UserRepository;
@@ -31,14 +32,12 @@ public class UserController {
         return "HelloWorld";
     }
 
-    @RequestMapping(value = "/submit", method = RequestMethod.POST)
-    public String login(String logindata) {
+    @RequestMapping("/authorize")
+    public String authorize(HttpSession session, String pageAccessing){
+        // if((User)session.getAttribute("thisClient")){
 
-        return "";
+        // }
+        return pageAccessing;
     }
 
-    public KeyPairGenerator encrypt(String password) {
-        // KeyPairGenerator kPG = KeyPairGenerator.getInstance(password);
-        return null;
-    }
 }

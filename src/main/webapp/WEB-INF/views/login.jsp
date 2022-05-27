@@ -26,7 +26,7 @@
         </div>
 
         <div class="loginFormDiv">
-            <form:form method="POST" name="loginForm">
+            <form:form method="POST" name="loginForm" action="/createLogin">
                 <table>
                     <tr>
                         <td>Email: </td>
