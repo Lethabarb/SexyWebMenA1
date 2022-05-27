@@ -34,9 +34,10 @@ public class UserController {
 
     @RequestMapping("/authorize")
     public String authorize(HttpSession session, String pageAccessing){
-        // if((User)session.getAttribute("thisClient")){
-
-        // }
+        User u = (User)session.getAttribute("thisClient");
+        if(u.getRole() > 0){
+            
+        }
         return pageAccessing;
     }
 
