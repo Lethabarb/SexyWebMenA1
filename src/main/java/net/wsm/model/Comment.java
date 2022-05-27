@@ -6,57 +6,46 @@ import java.util.UUID;
 
 public class Comment {
     private String id;
-    private String pageId;
     private String parent;
-    private Comment Parent = null;
-    private String author;
+    private String relation;
+    private int author;
     private LocalDateTime date;
     private String content;
-    private ArrayList<Comment> replies = new ArrayList<>();
+    private Comment[] replies = new Comment[0];
     public Comment() {
         id = UUID.randomUUID().toString();
         parent = id;
-        author = "";
+        relation = "";
+        author = 0;
         date = LocalDateTime.now();
         content = "";
     }
-    public Comment(User u, String content, String page) {
+    public Comment(User u, String content, String relation, String parent) {
         id = UUID.randomUUID().toString();
-        parent = id;
-        author = u.getEmail();
+        this.parent = parent;
+        this.relation = relation;
+        author = u.getId();
         date = LocalDateTime.now();
         this.content = content;
-        pageId = page;
     }
-    public Comment(User u, String content, String page, String i) {
-        id = i;
-        parent = id;
-        author = u.getEmail();
-        date = LocalDateTime.now();
-        this.content = content;
-        pageId = page;
-    }
-
-    public Comment(User u, String content, Comment p) {
+    public Comment(User u, String content, Comment parent) {
         id = UUID.randomUUID().toString();
-        parent = p.getId();
-        Parent = p;
-        author = u.getEmail();
+        this.parent = parent.getId();
+        this.relation = "C";
+        author = u.getId();
         date = LocalDateTime.now();
         this.content = content;
-        pageId = p.getPageId();
     }
-
     public void setId(String a) {
         id = a;
     }
     public String getId() {
         return id.toString();
     }
-    public void setAuthor(String a) {
+    public void setAuthor(int a) {
         author = a;
     }
-    public String getAuthor() {
+    public int getAuthor() {
         return author;
     }
     public void setDate(LocalDateTime d) {
@@ -72,18 +61,17 @@ public class Comment {
         return content;
     }
     public void addReply(Comment c) {
-        replies.add(c);
+        Comment[] newArr = new Comment[replies.length + 1];
+        for (int i = 0; i < replies.length; i++) {
+            newArr[i] = replies[i];
+        }
+        newArr[replies.length] = c;
+        replies = newArr;
     }
-    public void setReplies(ArrayList<Comment> r) {
+    public void setReplies(Comment[] r) {
         replies = r;
     }
-    public ArrayList<Comment> getReplies() {
+    public Comment[] getReplies() {
         return replies;
-    }
-    public Comment getParent() {
-        return Parent;
-    }
-    public String getPageId() {
-        return pageId;
     }
 }

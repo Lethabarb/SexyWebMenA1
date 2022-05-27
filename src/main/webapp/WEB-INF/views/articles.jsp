@@ -54,7 +54,7 @@
                 <table class="FlexTable">
                     <tr class="FlexRow">
                         <td>
-                            <p>${article.id}</p>
+                            <a href="wsm-app/article/${article.id}">${article.id}</a>
                         </td>
                         <td>
                             <p>${article.title}</p>
