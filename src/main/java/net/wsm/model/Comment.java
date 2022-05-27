@@ -20,19 +20,19 @@ public class Comment {
         date = LocalDateTime.now();
         content = "";
     }
-    public Comment(User u, String content, String relation, String parent) {
+    public Comment(int u, String content, String relation, String parent) {
         id = UUID.randomUUID().toString();
         this.parent = parent;
         this.relation = relation;
-        author = u.getId();
+        author = u;
         date = LocalDateTime.now();
         this.content = content;
     }
-    public Comment(User u, String content, Comment parent) {
+    public Comment(int u, String content, Comment parent) {
         id = UUID.randomUUID().toString();
         this.parent = parent.getId();
         this.relation = "C";
-        author = u.getId();
+        author = u;
         date = LocalDateTime.now();
         this.content = content;
     }

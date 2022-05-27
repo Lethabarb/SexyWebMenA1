@@ -60,10 +60,34 @@
             <c:if test = "${fn:length(comment.replies) > 0}" >
                 <c:set var="comment" value="${comment}" scope="request"/>
                 <c:import var="replies" url="./comments.jsp"/>
-                <c:out value="${replies}"/>
+                ${replies}
             </c:if>
         </div>
         </c:forEach>
+        <form:form method="POST" action="/comment">
+        <table>
+            <tr>
+                <td>
+                    <form:textarea path="content" rows="5" cols="30"/>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <form:hidden path="parent" value="${article.id}"/>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <form:hidden path="relation" value="A"/>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <form:hidden path="user" value="${thisClient.id}"/>
+                </td>
+            </tr>
+        </table>
+        </form:form>
     </div>
 
     
