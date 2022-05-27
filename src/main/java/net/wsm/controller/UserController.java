@@ -1,5 +1,5 @@
 package net.wsm.controller;
-
+//when it is working, PULL REQUEST
 import java.security.KeyPairGenerator;
 
 import org.springframework.stereotype.Controller;
@@ -22,8 +22,6 @@ public class UserController {
         m.addAttribute("thisClient", users[0]);
         return "HelloWorld";
     }
-    
-
 
     @RequestMapping("/user")
     public String handler(Model model) {

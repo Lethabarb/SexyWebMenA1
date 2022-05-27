@@ -6,6 +6,7 @@ GO
 CREATE TABLE [User]
 (
     [email] NVARCHAR(MAX) PRIMARY KEY,
+    [passwordHash] NVARCHAR(MAX),
     [role] INT CHECK (role = 0 OR role = 1),
     [firstName] NVARCHAR(MAX),
     [lastName] NVARCHAR(MAX),

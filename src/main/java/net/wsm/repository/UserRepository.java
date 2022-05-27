@@ -44,12 +44,13 @@ public class UserRepository {
             res = req.executeQuery(String.format("SELECT * FROM [User] WHERE [email] = '%s'", email));
             res.next();
             u = new User(res.getString(2),
-                    res.getInt(3),
-                    res.getString(4),
+                    res.getString(3),
+                    res.getInt(4),
                     res.getString(5),
                     res.getString(6),
                     res.getString(7),
-                    res.getTimestamp(8).toLocalDateTime());
+                    res.getString(8),
+                    res.getTimestamp(9).toLocalDateTime());
         } catch (SQLException e) {
             System.out.println(e.getMessage());
             return new User("err",0,"err");
