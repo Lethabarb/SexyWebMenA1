@@ -9,6 +9,8 @@ public class User{
     private int id;
     @Column(name="email")
     private String email;
+    @Column(name="passwordHash")
+    private String passwordHash;
     @Column(name="role")
     private int role; //1 for staff, 0 for user.
     @Column(name="firstName")
@@ -26,8 +28,9 @@ public class User{
 
     }
 
-    public User(String email, int role, String authToken, String firstname, String lastName, String contactNumber,LocalDateTime tokenExpiry, int id){
+    public User(String email,String passwordHash, int role, String authToken, String firstname, String lastName, String contactNumber,LocalDateTime tokenExpiry, int id){
         this.email = email;
+        this.passwordHash = passwordHash;
         this.role = role;
         this.authToken = authToken;
         this.tokenExp = tokenExpiry;
@@ -45,6 +48,14 @@ public class User{
         this.authToken = "";
         this.contactNumber = "";
         this.tokenExp = LocalDateTime.now();
+    }
+
+    public String getPassword(){
+        return passwordHash;
+    }
+
+    public void setPassword(String pwHash){
+        this.passwordHash = pwHash;
     }
 
     public String getFirstName(){
