@@ -5,7 +5,7 @@
 <html>
 
 <head>
-    <link rel="stylesheet" href="../css/site.css">
+    <link rel="stylesheet" href="wsm/static/site.css">
 </head>
 
 <body>

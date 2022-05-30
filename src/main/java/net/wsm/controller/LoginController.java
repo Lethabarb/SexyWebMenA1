@@ -12,7 +12,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 @Controller
-@RequestMapping("/account")
 public class LoginController{
     @Autowired
     UserManager userManager;
@@ -29,10 +28,10 @@ public class LoginController{
     @PostMapping("/createLogin")
     public String submit(Model model, @ModelAttribute("loginModel") loginModel loginModel){
         boolean success = userManager.SignIn(loginModel);
-        if (success) return "home";
+        if (success) return "redirect:";
         model.addAttribute("error", true);
         model.addAttribute("errorMessage", "login details incorrect");
-        return "login";
+        return "redirect:login";
     }
 
     @RequestMapping(value="/logout")

@@ -22,7 +22,7 @@
             <h1>Login</h1>
         </div>
 
-        <div class="loginFormDiv">
+        <div class="Center">
             <form:form method="POST" name="loginForm" action="createLogin">
                 <table>
                     <tr>
