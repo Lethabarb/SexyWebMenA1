@@ -7,9 +7,11 @@
 <head>
 <meta charset="ISO-8859-1">
     <title>Login</title>
-    <link rel="stylesheet" href="../css/site.css">
+    <link rel="stylesheet" href="../static/site.css">
     </head>
     <body>
+    <c:import var="navbar" url="./header.jsp"/>
+                ${navbar}
         <c:if test="${error}">
             <div class="error">
                 <p>${errorMessage}</p>

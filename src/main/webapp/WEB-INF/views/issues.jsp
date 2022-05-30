@@ -9,20 +9,8 @@
 </head>
 
 <body>
-    <div class="Header">
-        <ul class="Nav">
-            <li><a href="home-IT.html">Home</a></li>
-            <li>
-                <a href="Issues.html">Issues</a>
-            </li>
-            <li>
-                <a>Knowledge Base</a>
-            </li>
-        </ul>
-        <ul class="Login">
-            <li><a>Login</a></li>
-        </ul>
-    </div>
+<c:import var="navbar" url="./header.jsp"/>
+                ${navbar}
     <div class="Title">
         <h1>Issues</h1>
     </div>

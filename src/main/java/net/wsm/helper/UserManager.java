@@ -1,17 +1,19 @@
 package net.wsm.helper;
 
+import java.io.Serializable;
 import java.nio.charset.StandardCharsets;
 import java.time.LocalDateTime;
 
 import com.google.common.hash.Hashing;
 
-import org.springframework.beans.factory.InitializingBean;
 import org.springframework.security.crypto.bcrypt.BCrypt;
+import org.springframework.stereotype.Component;
 
 import net.wsm.model.*;
 import net.wsm.repository.UserRepository;
 
-public class UserManager implements InitializingBean{
+@Component
+public class UserManager implements Serializable{
     private User user = null;
     private boolean isSignedIn = false;
     private UserRepository repository = new UserRepository();
@@ -38,12 +40,7 @@ public class UserManager implements InitializingBean{
     public User getUser() {
         return user;
     }
-    public boolean isSignedIn() {
+    public boolean getIsSignedIn() {
         return isSignedIn;
-    }
-    @Override
-    public void afterPropertiesSet() throws Exception {
-        // TODO Auto-generated method stub
-        
     }
 }

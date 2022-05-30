@@ -27,7 +27,7 @@ public class LogginFilter implements Filter {
       UserManager u = (UserManager)req.getSession().getAttribute("thisClient");
     //   loginModel lg = new loginModel("Jeff@gmail.com", "password");
     //     System.out.println(lg.getPassword());
-      if(!u.isSignedIn()){
+      if(!u.getIsSignedIn()){
           return;
       }
       chain.doFilter(request, response);

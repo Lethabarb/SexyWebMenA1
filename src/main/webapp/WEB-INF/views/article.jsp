@@ -2,8 +2,14 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
-<c:import var="header" url="shared/header.jsp">
-${header}
+<!DOCTYPE html>
+<html>
+<head>
+<link rel="stylesheet" href="../static/site.css"/>
+</head>
+<body>
+<c:import var="navbar" url="./header.jsp"/>
+                ${navbar}
     <div class="GridContainer">
         <div class="GridTitle">
             <p class="Title">${article.title}</p>
@@ -75,5 +81,6 @@ ${header}
 
 
     </div>
-<c:import var="footer" url="shared/footer.jsp">
-${footer}
+</body>
+
+</html>
