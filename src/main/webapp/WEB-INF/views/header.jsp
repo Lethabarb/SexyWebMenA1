@@ -16,10 +16,10 @@
         <c:choose>
             <c:when test="${userManager.isSignedIn}">
                 <li><p>${userManager.getUser().email}</p></li>
-                <li><a href="/wsm-app/account/logout">Logout</a></li>
+                <li><a href="/wsm-app/logout">Logout</a></li>
             </c:when>
             <c:otherwise>
-                <li><a href="/wsm-app/account/login">login</a></li>
+                <li><a href="/wsm-app/login">login</a></li>
             </c:otherwise>
         </c:choose>
         </ul>

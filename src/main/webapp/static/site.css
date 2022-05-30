@@ -13,6 +13,16 @@ body {
     background-color: rgb(235, 235, 235);
 }
 
+form {
+    width: 20vw;
+    text-align: center;
+    margin: 0 40vw;
+}
+
+td {
+    text-align: center;
+}
+
 a {
     text-decoration: none;
     color: black;
@@ -53,7 +63,9 @@ td {
     display: inline-block;
 }
 
+
 /* real styling of each nav element */
+
 .Nav>li>a,
 .Login>li>a {
     color: white;
@@ -70,7 +82,9 @@ td {
     border-radius: 5px;
 }
 
+
 /* make login on right */
+
 .Login {
     float: right;
 }
@@ -79,14 +93,20 @@ td {
     text-align: center;
 }
 
+
 /* center div trick :) */
+
 .Center {
     width: 100%;
     text-align: center;
 }
 
+
 /* table in the center of page if in "Center" div */
+
+
 /* Using a flexbox to create a table that looks nicer than a table */
+
 .FlexBox {
     display: flex;
     width: 80%;
@@ -94,6 +114,7 @@ td {
     row-gap: 2vh;
     flex-direction: column;
 }
+
 
 /* alternate colours per row
 .FlexTable:nth-child(even) {
@@ -104,13 +125,17 @@ td {
     background-color: rgb(221, 221, 221);
 } */
 
+
 /* keep first row a header style */
+
 .FlexTable:first-child {
     color: white;
     background-color: black;
 }
 
+
 /* Each "row" */
+
 .FlexTable {
     background-color: white;
     box-shadow: 10px 10px 10px lightgray;
@@ -119,7 +144,9 @@ td {
     overflow: hidden;
 }
 
+
 /* seperate the elements across the "row" */
+
 .FlexRow {
     margin: -2px 0px;
     width: 100%;
@@ -127,7 +154,9 @@ td {
     display: flex;
 }
 
+
 /* allow the last child to have a different bg colour */
+
 :root {
     --status0: rgb(78, 47, 0);
     --status1: rgb(255, 196, 0);
@@ -201,17 +230,15 @@ td {
     border-bottom: solid var(--status4) 2px;
 }
 
+
 /* Grid to structure web page */
+
 .GridContainer {
     display: grid;
     grid-template-columns: 2fr 1fr;
     grid-template-rows: 1fr 1fr 1fr 4fr;
     gap: 1vh 3vh;
-    grid-template-areas:
-        "GridTitle GridId"
-        "GridDescription GridCatagory"
-        "GridSolution GridDate"
-        "GridSolution .";
+    grid-template-areas: "GridTitle GridId" "GridDescription GridCatagory" "GridSolution GridDate" "GridSolution .";
     padding: 3vh;
 }
 
@@ -250,7 +277,9 @@ td {
     grid-area: GridDate;
 }
 
+
 /* Make comments same width and main section */
+
 .Comments {
     display: grid;
     grid-template-columns: 2fr 1fr;
@@ -274,7 +303,8 @@ td {
     justify-content: space-between;
     background-color: rgb(184, 184, 184);
 }
-.CommentHead > p {
+
+.CommentHead>p {
     margin: 2vh;
 }
 
