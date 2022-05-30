@@ -3,11 +3,16 @@ package net.wsm.controller;
 
 import java.util.HashMap;
 
+import javax.annotation.Resource;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import net.wsm.helper.UserManager;
 import net.wsm.model.*;
@@ -21,32 +26,46 @@ public class ArticleController {
     private UserRepository userRepos = new UserRepository();
     private CommentRepository commentRepos = new CommentRepository();
 
-    @Autowired
-    UserManager userManager;
+    @Resource(name = "userManager")
+    private UserManager userManager;
     
     @RequestMapping("/articles")
     public String articles(Model model) {
         Article[] articles = repository.getAll();
+        model.addAttribute("userManager", userManager);
         model.addAttribute("articles", articles);
         return "articles";
     }
 
     @RequestMapping("/article/{id}")
     public String article(Model model, @PathVariable("id") String id) {
-        System.out.println(id);
         Article article = repository.getById(id);
         Comment[] comments = commentRepos.getArticleComments(id);
-        for (Comment comment : comments) {
-            System.out.println(comment.getContent());
-        }
         User[] usersArray = userRepos.getAll();
         HashMap<Integer, User> users = new HashMap<>();
         for (User user : usersArray) {
             users.put(user.getId(), user);
         }
+        model.addAttribute("userManager", userManager);
         model.addAttribute("users", users);
         model.addAttribute("article", article);
         model.addAttribute("comments", comments);
         return "article";
+    }
+
+    @PostMapping("/comment")
+    public String Comment(@RequestParam int author, @RequestParam String relation, @RequestParam String parent, @RequestParam String content, @RequestParam(defaultValue = "/") String redirectPath) {
+        Comment c = new Comment(author, content, relation, parent);
+        commentRepos.createComment(c);
+        return String.format("redirect:%s", redirectPath);
+    }
+
+    @RequestMapping("/reply")
+    public String createComment(@RequestParam String parent, @RequestParam String redirectPath, Model model) {
+        Comment Cparent = commentRepos.getById(parent);
+        model.addAttribute("redirectPath", redirectPath);
+        model.addAttribute("userManager", userManager);
+        model.addAttribute("comment", Cparent);
+        return "createComment";
     }
 }

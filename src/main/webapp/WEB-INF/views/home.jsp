@@ -3,7 +3,8 @@
 <!DOCTYPE html>
 <html>
 <head>
-<link rel="stylesheet" href="./static/site.css"/>
+    <link rel="stylesheet" href="/wsm-app/static/site.css">
+
 </head>
 <body>
 <c:import var="navbar" url="./header.jsp"/>

@@ -312,3 +312,11 @@ td {
     padding: 2vh;
     background-color: white;
 }
+
+.Error {
+    border-radius: 15px;
+    background-color: red;
+    color: black;
+    font-weight: bold;
+    font-size: 25px;
+}

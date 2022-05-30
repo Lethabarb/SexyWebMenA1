@@ -29,8 +29,10 @@ public class CommentRepository {
     }
 
     public synchronized Comment[] getReplies(String commentId) {
-        Comment[] comments = context.getAsync(Comment.class, "[relation] = 'C'", String.format("parent = '%s'", commentId));
-        if (comments == null) return null;
+        Comment[] comments = context.getAsync(Comment.class, "[relation] = 'C'",
+                String.format("parent = '%s'", commentId));
+        if (comments == null)
+            return null;
         for (Comment comment : comments) {
             Comment[] replies = getReplies(comment.getId());
             if (replies != null) {
@@ -46,19 +48,21 @@ public class CommentRepository {
     public synchronized Comment[] getArticleComments(String articleId) {
         Comment[] comments = context.getAsync(Comment.class, "[relation] = 'A'",
                 String.format("parent = '%s'", articleId));
-        for (Comment comment : comments) {
-            Comment[] replies = getReplies(comment.getId());
-            if (replies != null) {
-                for (Comment comment2 : replies) {
-                    comment.addReply(comment2);
+        if (comments != null) {
+            for (Comment comment : comments) {
+                Comment[] replies = getReplies(comment.getId());
+                if (replies != null) {
+                    for (Comment comment2 : replies) {
+                        comment.addReply(comment2);
+                    }
                 }
-            }
 
+            }
+            for (Comment comment : comments) {
+                System.out.println(comment.getId());
+            }
         }
-        for (Comment comment : comments) {
-            System.out.println(comment.getId());
-        }
-        return comments;
+        return comments == null ? new Comment[0] : comments;
     }
 
     public synchronized Comment[] getIssueComments(String issueId) {

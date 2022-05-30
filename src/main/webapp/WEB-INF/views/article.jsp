@@ -5,10 +5,11 @@
 <!DOCTYPE html>
 <html>
 <head>
-<link rel="stylesheet" href="../static/site.css"/>
+<link rel="stylesheet" href="/wsm-app/static/site.css">
+
 </head>
 <body>
-<c:import var="navbar" url="./header.jsp"/>
+    <c:import var="navbar" url="./header.jsp"/>
                 ${navbar}
     <div class="GridContainer">
         <div class="GridTitle">
@@ -40,12 +41,14 @@
             <c:forEach var="comment" items="${comments}">
                 <div class="Comment">
                     <div class="CommentHead">
-                        <p>${users.get(comment.author)}</p>
+                        <c:set var="auth" value="${users.get(comment.author)}"/>
+                        <p>${auth.firstName} ${auth.lastName}</p>
                         <p>${comment.date}</p>
                     </div>
                     <div class="Content">
                         <p>${comment.content}</p>
                     </div>
+                    <a href="/wsm-app/reply?parent=${comment.id}&redirectPath=/article/${article.id}">Reply</a>
                     <c:if test = "${fn:length(comment.replies) > 0}">
                         <c:set var="comment" value="${comment}" scope="request"/>
                         <c:import var="replies" url="./comments.jsp"/>
@@ -53,33 +56,15 @@
                     </c:if>
                 </div>
             </c:forEach>
-            <form:form method="POST" action="/comment">
-                <table>
-                    <tr>
-                        <td>
-                            <form:textarea path="content" rows="5" cols="30"/>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <form:hidden path="parent" value="${article.id}"/>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <form:hidden path="relation" value="A"/>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <form:hidden path="user" value="${thisClient.id}"/>
-                        </td>
-                    </tr>
-                </table>
+            <form:form method="POST" action="/wsm-app/comment">
+                <textarea name="content" placeholder="Your message here" cols="80" rows="10" minlength="5" maxlength="500" spellcheck required></textarea>
+                <input type="text" value="${article.id}" name="parent" hidden/>
+                <input type="text" value="A" name="relation" hidden/>
+                <input type="text" value="${userManager.userId}" name="author" hidden/>
+                <input type="text" value="/article/${article.id}" name="redirectPath" hidden/>
+                <input type="submit" value="submit"/>
             </form:form>
         </div>
-
-
     </div>
 </body>
 

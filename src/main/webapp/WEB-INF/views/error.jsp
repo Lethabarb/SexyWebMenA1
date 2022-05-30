@@ -3,7 +3,8 @@
 <!DOCTYPE html>
 <html>
 <head>
-<link rel="stylesheet" href="./static/site.css">
+    <link rel="stylesheet" href="/wsm-app/static/site.css">
+
     <meta charset="ISO-8859-1">
         <title>No Access</title>
     </head>

@@ -11,7 +11,7 @@ import org.springframework.core.annotation.Order;
 
 import net.wsm.helper.UserManager;
 
-@WebFilter(filterName = "authorizeFilter", urlPatterns = { "/issues", "/issue/*" })
+@WebFilter(filterName = "authorizeFilter", urlPatterns = { "/issues", "/issue/*", "/comment" })
 @Order(1)
 public class LogginFilter implements Filter {
 

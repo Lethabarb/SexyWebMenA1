@@ -9,6 +9,7 @@
             <div class="Content">
                 <p>${comment.content}</p>
             </div>
+            <a href="/wsm-app/reply?parent=${comment.id}&redirectPath=/article/${article.id}">Reply</a>
             <c:if test = "${fn:length(comment.replies) > 0}" >
                 <c:set var="comment" value="${comment}" scope="request"/>
                 <c:import var="replies" url="./comments.jsp"/>

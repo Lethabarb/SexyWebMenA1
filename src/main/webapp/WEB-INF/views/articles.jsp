@@ -5,7 +5,8 @@
 <html>
 
 <head>
-    <link rel="stylesheet" href="./static/site.css">
+    <link rel="stylesheet" href="/wsm-app/static/site.css">
+
 </head>
 
 <body>
@@ -42,7 +43,7 @@
                 <table class="FlexTable">
                     <tr class="FlexRow">
                         <td>
-                            <a href="wsm-app/article/${article.id}">${article.id}</a>
+                            <a href="article/${article.id}">${article.id}</a>
                         </td>
                         <td>
                             <p>${article.title}</p>

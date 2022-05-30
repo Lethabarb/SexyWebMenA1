@@ -57,7 +57,6 @@ public class DbContext {
                     conds += " and ";
                 }
             }
-            System.out.println((String.format("SELECT * FROM [%s] WHERE %s FOR JSON PATH", c.getSimpleName(), conds)));
             ResultSet r = s
                     .executeQuery(String.format("SELECT * FROM [%s] WHERE %s FOR JSON PATH", c.getSimpleName(), conds));
             r.next();
@@ -81,7 +80,6 @@ public class DbContext {
                     if (!first)
                         query += ", ";
                     first = false;
-                    System.out.println(f.getType().getSimpleName());
                     if (f.getType().getSimpleName().equals("int")) {
                         Method m = O.getClass().getMethod(
                                 "get" + f.getName().substring(0, 1).toUpperCase() + f.getName().substring(1));
@@ -101,7 +99,6 @@ public class DbContext {
                 }
             }
             query += String.format(" WHERE id = %d", id);
-            System.out.println(query);
             int r = s.executeUpdate(query);
             return true;
         } catch (Exception e) {
@@ -186,25 +183,27 @@ public class DbContext {
             String query = String.format("INSERT INTO [%s] VALUES (", O.getClass().getSimpleName());
             boolean first = true;
             for (Field f : O.getClass().getDeclaredFields()) {
-                if (!first)
-                    query += ", ";
-                first = false;
-                System.out.println(f.getType().getSimpleName());
-                if (f.getType().getSimpleName().equals("int")) {
-                    Method m = O.getClass().getMethod(
-                            "get" + f.getName().substring(0, 1).toUpperCase() + f.getName().substring(1));
-                    if (!m.getReturnType().getSimpleName().equals("int"))
-                        throw new IllegalArgumentException("method does not return int");
-                    query += String.format("%s", m.invoke(O));
-                } else if (f.getType().getSimpleName().equals("LocalDateTime")) {
-                    Method m = O.getClass().getMethod(
-                            "get" + f.getName().substring(0, 1).toUpperCase() + f.getName().substring(1));
-                    query += String.format("'%s'",
-                            java.sql.Date.valueOf(((LocalDateTime) m.invoke(O)).toLocalDate()));
-                } else {
-                    Method m = O.getClass().getMethod(
-                            "get" + f.getName().substring(0, 1).toUpperCase() + f.getName().substring(1));
-                    query += String.format("'%s'", m.invoke(O));
+                if (!f.getType().getSimpleName().substring(f.getType().getSimpleName().length() - 2).equals("[]")) {
+                    if (!first)
+                        query += ", ";
+                    first = false;
+                    System.out.println(f.getType().getSimpleName());
+                    if (f.getType().getSimpleName().equals("int")) {
+                        Method m = O.getClass().getMethod(
+                                "get" + f.getName().substring(0, 1).toUpperCase() + f.getName().substring(1));
+                        if (!m.getReturnType().getSimpleName().equals("int"))
+                            throw new IllegalArgumentException("method does not return int");
+                        query += String.format("%s", m.invoke(O));
+                    } else if (f.getType().getSimpleName().equals("LocalDateTime")) {
+                        Method m = O.getClass().getMethod(
+                                "get" + f.getName().substring(0, 1).toUpperCase() + f.getName().substring(1));
+                        query += String.format("'%s'",
+                                java.sql.Date.valueOf(((LocalDateTime) m.invoke(O)).toLocalDate()));
+                    } else {
+                        Method m = O.getClass().getMethod(
+                                "get" + f.getName().substring(0, 1).toUpperCase() + f.getName().substring(1));
+                        query += String.format("'%s'", m.invoke(O));
+                    }
                 }
             }
             query += ")";
@@ -217,6 +216,5 @@ public class DbContext {
             return false;
         }
     }
-
 
 }

@@ -17,6 +17,7 @@ public class UserManager implements Serializable{
     private User user = null;
     private boolean isSignedIn = false;
     private UserRepository repository = new UserRepository();
+    private int userId;
 
     public boolean SignIn(loginModel login) {
         if (login != null && login.getPassword() != null && login.getEmail() != null) {
@@ -29,6 +30,7 @@ public class UserManager implements Serializable{
                     repository.updateUser(user);
                     this.user = user;
                     isSignedIn = true;
+                    userId = user.getId();
                     System.out.println("Logged in, welcome " + login.getEmail());
                     return true;
                 }
@@ -45,5 +47,8 @@ public class UserManager implements Serializable{
     }
     public boolean getIsSignedIn() {
         return isSignedIn;
+    }
+    public int getUserId() {
+        return userId;
     }
 }
