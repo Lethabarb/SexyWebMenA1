@@ -4,6 +4,8 @@ import net.wsm.repository.UserRepository;
 
 import javax.servlet.http.HttpSession;
 
+import org.springframework.security.crypto.bcrypt.BCrypt;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -25,12 +27,15 @@ public class LoginController{
 
     @PostMapping("/createLogin")
     public String submit(Model model, @ModelAttribute("loginModel") loginModel loginModel, HttpSession session){
+        //loginModel logModel = new loginModel(loginModel.getEmail(), loginModel.getPassword());
         System.out.println(loginModel.getEmail());
         System.out.println("Password: " + loginModel.getPassword());
         if(loginModel != null && loginModel.getPassword() != null && loginModel.getEmail() != null){
+
             User loginUser = repository.getByEmail(loginModel.getEmail()); //check if password matches
-            System.out.println("loginUser password: " + loginUser.getPassword());
-            if(loginModel.getPassword().equals(loginUser.getPassword())){
+            System.out.println("loginUser password: " + loginUser.getPasswordHash());
+
+            if(BCrypt.checkpw(loginModel.getPassword(), loginUser.getPasswordHash())){ //checking against does not work
                 model.addAttribute("loggedIn", loginUser);
                 session.setAttribute("thisClient", loginUser);
                 return "home";

@@ -24,8 +24,8 @@ public class AuthorizeFilter implements Filter {
       HttpServletRequest req = (HttpServletRequest) request;
       System.out.println("URI: " + req.getRequestURI());
       User u = (User)req.getSession().getAttribute("thisClient");
-    //   loginModel lg = new loginModel("Jeff@gmail.com", "password");
-    //     System.out.println(lg.getPassword());
+      loginModel lg = new loginModel("Jeff@gmail.com", "password");
+      System.out.println(lg.getPassword());
       if(u.getRole() <= 0){
           return;
       }

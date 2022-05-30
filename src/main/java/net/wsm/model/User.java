@@ -6,70 +6,63 @@ import javax.persistence.*;
 @Entity
 @Table(name="User")
 public class User{
+    private int id;
     @Column(name="email")
     private String email;
-    @Column(name="passwordHash")
-    private String passwordHash;
     @Column(name="role")
     private int role; //1 for staff, 0 for user.
     @Column(name="firstName")
-    private String firstname;
+    private String firstName;
     @Column(name="lastName")
-    private String surname;
+    private String lastName;
     @Column(name="contactNumber")
     private String contactNumber;
     @Column(name="authToken")
     private String authToken;
     @Column(name="tokenExp")
-    public LocalDateTime tokenExp;
+    private LocalDateTime tokenExp;
+    @Column(name="passwordHash")
+    private String passwordHash;
 
     public User(){
 
     }
 
-    public User(String email, String passwordHash, int role, String authToken, String firstname, String surname, String contactNumber,LocalDateTime tokenExpiry){
+    public User(String email, int role, String authToken, String firstname, String lastName, String contactNumber,LocalDateTime tokenExpiry, int id){
         this.email = email;
-        this.passwordHash = passwordHash;
         this.role = role;
         this.authToken = authToken;
         this.tokenExp = tokenExpiry;
-        this.firstname = firstname;
-        this.surname = surname;
+        this.firstName = firstname;
+        this.lastName = lastName;
         this.contactNumber = contactNumber;
+        this.id = id;
     }
 
     public User(String email, int role, String firstname){
         this.email = email;
         this.role = role;
-        this.firstname = firstname;
-        this.surname = "";
+        this.firstName = firstname;
+        this.lastName = "";
         this.authToken = "";
         this.contactNumber = "";
         this.tokenExp = LocalDateTime.now();
     }
 
-    public String getPassword(){
-        return passwordHash;
-    }
-
-    public void setPassword(String pwHash){
-        this.passwordHash = pwHash;
-    }
-
-    public String getFirstname(){
-        return firstname;
+    public String getFirstName(){
+        return firstName;
     }
 
     public void setFirstname(String f){
-        firstname = f;
+        firstName = f;
     }
 
-    public String getSurname(){
-        return surname;
+    public String getLastName(){
+        return lastName;
     }
 
-    public void setSurname(String s){
-        surname = s;
+    public void setLastName(String s){
+        lastName = s;
     }
 
     public String getContactNumber(){
@@ -109,11 +102,25 @@ public class User{
         authToken = aT;
     }
 
-    public LocalDateTime getTokenExpiry(){
+    public LocalDateTime getTokenExp(){
         return tokenExp;
     }
 
-    public void setTokenExpiry(LocalDateTime tE){
+    public void setTokenExp(LocalDateTime tE){
         tokenExp = tE;
+    }
+    public void setId(int id) {
+        this.id = id;
+    }
+    public int getId() {
+        return id;
+    }
+
+    public String getPasswordHash(){
+        return passwordHash;
+    }
+
+    public void setPasswordHash(String pWH){
+        this.passwordHash = pWH;
     }
 }
