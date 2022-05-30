@@ -1,7 +1,5 @@
 package net.wsm.model;
 
-import java.security.SecureRandom;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 public class loginModel {
     private String email;
@@ -9,7 +7,7 @@ public class loginModel {
 
     public loginModel(String email, String password){
         this.email=email;
-        this.password=hash(password);
+        this.password=password;
     }
 
     public String getEmail(){
@@ -28,11 +26,11 @@ public class loginModel {
         this.password = password;
     }
 
-    public String hash(String pw){
-        int strength = 10;
-        BCryptPasswordEncoder BCryptPasswordEncoder = new BCryptPasswordEncoder(strength, new SecureRandom());
-        String encodedPassword = BCryptPasswordEncoder.encode(pw);
-        return encodedPassword;
+    // public String hash(String pw){
+    //     int strength = 10;
+    //     BCryptPasswordEncoder BCryptPasswordEncoder = new BCryptPasswordEncoder(strength, new SecureRandom());
+    //     String encodedPassword = BCryptPasswordEncoder.encode(pw);
+    //     return encodedPassword;
         
-    }
+    // }
 }

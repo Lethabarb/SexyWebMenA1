@@ -1,7 +1,6 @@
 package net.wsm.model;
 
 import java.time.LocalDateTime;
-import java.util.ArrayList;
 import java.util.UUID;
 
 public class Comment {
@@ -73,5 +72,8 @@ public class Comment {
     }
     public Comment[] getReplies() {
         return replies;
+    }
+    public String getParent() {
+        return parent;
     }
 }

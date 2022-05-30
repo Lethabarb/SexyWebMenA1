@@ -4,15 +4,22 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html>
-    <head>
-        <meta charset="ISO-8859-1">
-        <title>Login</title>
-        <link rel="stylesheet" href="../css/site.css">
+<head>
+<meta charset="ISO-8859-1">
+    <title>Login</title>
+    <link rel="stylesheet" href="../css/site.css">
     </head>
-   <body>
-      <div class="Header">
+    <body>
+        <c:if test="${error}">
+            <div class="error">
+                <p>${errorMessage}</p>
+            </div>
+        </c:if>
+        <div class="Header">
             <ul class="Nav">
-                <li><a href="home-IT.html">Home</a></li>
+                <li>
+                    <a href="home-IT.html">Home</a>
+                </li>
                 <li>
                     <a href="Issues.html">Issues</a>
                 </li>
@@ -30,29 +37,27 @@
                 <table>
                     <tr>
                         <td>Email: </td>
-                        <td> <input type="text" name="email"/> </td>
+                        <td>
+                            <input type="text" name="email"/>
+                        </td>
                     </tr>
                     <tr>
                         <td>Password: </td>
-                        <td><input type="password" name="password"/></td>
+                        <td>
+                            <input type="password" name="password"/>
+                        </td>
                     </tr>
                     <tr>
-                        <td colspan="2"><input type="submit" value="Submit"/></td>
+                        <td colspan="2">
+                            <input type="submit" value="Submit"/>
+                        </td>
                     </tr>
                 </table>
             </form:form>
         </div>
 
-        <%-- <div class="loginFormDiv">
-            <form method="post" action="" style="width:fit-content" name="loginForm"> <!--need to add action-->
-                <input id="email" name="email" type="text" placeholder="Email here"><br><br>
-                <input id="password" name="password" type="text" placeholder="Password here"> <br><br>
-    
-                <input type="submit" value="Submit" onsubmit="return Validate()">
-            </form>
-        </div> --%>
-        
-    <script>
+
+        <script>
 
         function Validate(){
 
@@ -81,6 +86,6 @@
           
           }
 
-    </script>
-   </body>
+        </script>
+    </body>
 </html>

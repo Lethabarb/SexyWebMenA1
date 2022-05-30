@@ -1,8 +1,5 @@
 package net.wsm.repository;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-
 import net.wsm.model.*;
 
 public class CommentRepository {

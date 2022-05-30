@@ -4,8 +4,6 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.UUID;
 
-import org.springframework.cglib.core.Local;
-
 public class Article {
     private String id;
     private String title;

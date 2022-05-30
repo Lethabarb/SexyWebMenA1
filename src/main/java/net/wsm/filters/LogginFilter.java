@@ -11,9 +11,9 @@ import org.springframework.core.annotation.Order;
 import net.wsm.helper.UserManager;
 import net.wsm.model.User;
 
-@WebFilter(filterName = "authorizeFilter", urlPatterns = "/admin/*")
-@Order(2)
-public class AuthorizeFilter implements Filter {
+@WebFilter(filterName = "authorizeFilter", urlPatterns = {"/issues", "/issue/*"})
+@Order(1)
+public class LogginFilter implements Filter {
   
   @Override
   public void init (FilterConfig filterConfig) throws ServletException {
@@ -24,10 +24,10 @@ public class AuthorizeFilter implements Filter {
                         FilterChain chain)
             throws IOException, ServletException {
       HttpServletRequest req = (HttpServletRequest) request;
-      User u = ((UserManager)req.getSession().getAttribute("thisClient")).getUser();
+      UserManager u = (UserManager)req.getSession().getAttribute("thisClient");
     //   loginModel lg = new loginModel("Jeff@gmail.com", "password");
     //     System.out.println(lg.getPassword());
-      if(u.getRole() <= 0){
+      if(!u.isSignedIn()){
           return;
       }
       chain.doFilter(request, response);
