@@ -17,19 +17,7 @@
                 <p>${errorMessage}</p>
             </div>
         </c:if>
-        <div class="Header">
-            <ul class="Nav">
-                <li>
-                    <a href="home-IT.html">Home</a>
-                </li>
-                <li>
-                    <a href="Issues.html">Issues</a>
-                </li>
-                <li>
-                    <a>Knowledge Base</a>
-                </li>
-            </ul>
-        </div>
+        
         <div class="Title">
             <h1>Login</h1>
         </div>
