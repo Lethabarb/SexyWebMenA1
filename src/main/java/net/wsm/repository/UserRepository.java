@@ -1,10 +1,6 @@
 package net.wsm.repository;
 
 import java.sql.*;
-import java.util.ArrayList;
-
-import javax.persistence.EntityExistsException;
-
 
 import net.wsm.model.*;
 

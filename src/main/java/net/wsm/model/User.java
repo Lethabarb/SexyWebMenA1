@@ -50,11 +50,11 @@ public class User{
         this.tokenExp = LocalDateTime.now();
     }
 
-    public String getPassword(){
+    public String getPasswordHash(){
         return passwordHash;
     }
 
-    public void setPassword(String pwHash){
+    public void setPasswordHash(String pwHash){
         this.passwordHash = pwHash;
     }
 

@@ -1,5 +1,6 @@
 package net.wsm.model;
 
+import org.springframework.security.crypto.bcrypt.BCrypt;
 
 public class loginModel {
     private String email;
@@ -7,7 +8,7 @@ public class loginModel {
 
     public loginModel(String email, String password){
         this.email=email;
-        this.password=password;
+        this.password=BCrypt.hashpw(password, BCrypt.gensalt());
     }
 
     public String getEmail(){
