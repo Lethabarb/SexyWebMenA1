@@ -1,14 +1,15 @@
 package net.wsm.controller;
-
 import java.security.KeyPairGenerator;
 import java.util.HashMap;
 import java.util.Map;
-
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
- 
+import java.sql.*;
+import java.time.LocalDateTime;
+
+import javax.servlet.http.HttpSession;
 import net.wsm.model.*;
 import net.wsm.repository.IssueRepository;
 import net.wsm.repository.UserRepository;
@@ -17,14 +18,29 @@ import net.wsm.repository.UserRepository;
 public class UserController {
     private UserRepository repository = new UserRepository();
 
-    @RequestMapping(value = "/submit", method = RequestMethod.POST)
-    public String login(String logindata) {
-
-        return "";
+    @RequestMapping("/admin/test")
+    public String test(Model m) {
+        User[] users = repository.getAll();
+        m.addAttribute("thisClient", users[0]);
+        return "HelloWorld";
     }
 
-    public KeyPairGenerator encrypt(String password) {
-        // KeyPairGenerator kPG = KeyPairGenerator.getInstance(password);
-        return null;
+    @RequestMapping("/user")
+    public String handler(Model model) {
+        User u = new User("abcd@gmail.com", 1, "Jeff");
+        model.addAttribute("thisClient", u);
+
+        return "HelloWorld";
     }
+
+//     @RequestMapping("/authorize")
+//     public String authorize(HttpSession session, String pageAccessing){
+//         User u = (User)session.getAttribute("thisClient");
+//         if(u.getRole() > 0){
+
+
+//         }
+//         return pageAccessing;
+//     }
+
 }

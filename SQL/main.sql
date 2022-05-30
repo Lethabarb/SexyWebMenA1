@@ -12,13 +12,14 @@ GO
 CREATE TABLE [User]
 (
     [id] INT PRIMARY KEY IDENTITY (1,1) NOT NULL,
-    [email] NVARCHAR(MAX) UNIQUE NOT NULL,
-    [role] INT CHECK (role = 0 OR role = 1) NOT NULL,
-    [firstName] NVARCHAR(MAX) NOT NULL,
-    [lastName] NVARCHAR(MAX) NOT NULL,
-    [contactNumber] NVARCHAR(MAX) NOT NULL,
-    [authToken] NVARCHAR(MAX) NULL,
-    [tokenExp] DATETIME NULL
+    [email] NVARCHAR(MAX),
+    [passwordHash] NVARCHAR(MAX),
+    [role] INT CHECK (role = 0 OR role = 1),
+    [firstName] NVARCHAR(MAX),
+    [lastName] NVARCHAR(MAX),
+    [contactNumber] NVARCHAR(MAX),
+    [authToken] NVARCHAR(MAX),
+    [tokenExp] DATETIME
 );
 GO
 

@@ -5,9 +5,9 @@
 <html>
     <head>
         <meta charset="ISO-8859-1">
-        <title></title>
+        <title>No Access</title>
     </head>
    <body>
-      
+      <h1>You do not have access to this.</h1>
    </body>
 </html>

@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>    
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html>
     <head>
@@ -26,29 +26,31 @@
         </div>
 
         <div class="loginFormDiv">
-            <form:form method="post" action="UserController">
+            <form:form method="POST" name="loginForm" action="createLogin">
                 <table>
                     <tr>
-                        <td> <form:input path="email"/> </td>
+                        <td>Email: </td>
+                        <td> <input type="text" name="email"/> </td>
                     </tr>
                     <tr>
-                        <td><form:input path="password"/></td>
+                        <td>Password: </td>
+                        <td><input type="password" name="password"/></td>
                     </tr>
                     <tr>
-                        <td colspan="2"><input type="submit" path="submit"/></td>
+                        <td colspan="2"><input type="submit" value="Submit"/></td>
                     </tr>
                 </table>
             </form:form>
         </div>
 
-        <div class="loginFormDiv">
+        <%-- <div class="loginFormDiv">
             <form method="post" action="" style="width:fit-content" name="loginForm"> <!--need to add action-->
                 <input id="email" name="email" type="text" placeholder="Email here"><br><br>
                 <input id="password" name="password" type="text" placeholder="Password here"> <br><br>
     
                 <input type="submit" value="Submit" onsubmit="return Validate()">
             </form>
-        </div>
+        </div> --%>
         
     <script>
 
