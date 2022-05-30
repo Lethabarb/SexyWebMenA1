@@ -14,8 +14,9 @@ public class UserRepository {
     }
 
     public synchronized User getByEmail(String email) {
+        
         User[] users = context.getAsync(User.class, String.format("email = '%s'", email));
-        return users[0];
+        return users == null ? new User("notFound", 0, "notFound"): users[0];
     }
 
     public synchronized User getById(int id) {

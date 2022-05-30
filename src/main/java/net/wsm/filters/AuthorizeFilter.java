@@ -14,24 +14,26 @@ import net.wsm.model.User;
 @WebFilter(filterName = "authorizeFilter", urlPatterns = "/admin/*")
 @Order(2)
 public class AuthorizeFilter implements Filter {
-  
-  @Override
-  public void init (FilterConfig filterConfig) throws ServletException {
-  }
-  
-  @Override
-  public void doFilter (ServletRequest request, ServletResponse response,
-                        FilterChain chain)
-            throws IOException, ServletException {
-      HttpServletRequest req = (HttpServletRequest) request;
-      User u = ((UserManager)req.getSession().getAttribute("thisClient")).getUser();
-      if(u.getRole() <= 0){
-          return;
-      }
-      chain.doFilter(request, response);
-  }
-  
-  @Override
-  public void destroy () {
-  }
+
+	@Override
+	public void init(FilterConfig filterConfig) throws ServletException {
+	}
+
+	@Override
+	public void doFilter(ServletRequest request, ServletResponse response,
+			FilterChain chain)
+			throws IOException, ServletException {
+		HttpServletRequest req = (HttpServletRequest) request;
+		if (req.getSession().getAttribute("thisClient") != null) {
+			User u = ((UserManager) req.getSession().getAttribute("thisClient")).getUser();
+			if (u.getRole() <= 0) {
+				return;
+			}
+		}
+		chain.doFilter(request, response);
+	}
+
+	@Override
+	public void destroy() {
+	}
 }

@@ -48,6 +48,7 @@ public class User{
         this.authToken = "";
         this.contactNumber = "";
         this.tokenExp = LocalDateTime.now();
+        this.passwordHash = "";
     }
 
     public String getPasswordHash(){
