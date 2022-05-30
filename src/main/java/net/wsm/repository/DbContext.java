@@ -54,7 +54,11 @@ public class DbContext {
             String conds = "";
             for (int i = 0; i < conditions.length; i++) {
                 conds += conditions[i];
+                if (i < conditions.length - 1) {
+                    conds += " and ";
+                }
             }
+            System.out.println((String.format("SELECT * FROM [%s] WHERE %s FOR JSON PATH", c.getSimpleName(), conds)));
             ResultSet r = s
                     .executeQuery(String.format("SELECT * FROM [%s] WHERE %s FOR JSON PATH", c.getSimpleName(), conds));
             r.next();

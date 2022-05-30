@@ -1,6 +1,7 @@
 package net.wsm.controller;
-//when it is working, PULL REQUEST
-
+import java.security.KeyPairGenerator;
+import java.util.HashMap;
+import java.util.Map;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -9,8 +10,8 @@ import java.sql.*;
 import java.time.LocalDateTime;
 
 import javax.servlet.http.HttpSession;
-
 import net.wsm.model.*;
+import net.wsm.repository.IssueRepository;
 import net.wsm.repository.UserRepository;
 
 @Controller
@@ -32,13 +33,14 @@ public class UserController {
         return "HelloWorld";
     }
 
-    @RequestMapping("/authorize")
-    public String authorize(HttpSession session, String pageAccessing){
-        User u = (User)session.getAttribute("thisClient");
-        if(u.getRole() > 0){
+//     @RequestMapping("/authorize")
+//     public String authorize(HttpSession session, String pageAccessing){
+//         User u = (User)session.getAttribute("thisClient");
+//         if(u.getRole() > 0){
 
-        }
-        return pageAccessing;
-    }
+
+//         }
+//         return pageAccessing;
+//     }
 
 }

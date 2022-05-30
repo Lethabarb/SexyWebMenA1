@@ -28,7 +28,7 @@ public class User{
 
     }
 
-    public User(String email, int role, String authToken, String firstname, String lastName, String contactNumber,LocalDateTime tokenExpiry, int id){
+    public User(String email,String passwordHash, int role, String authToken, String firstname, String lastName, String contactNumber,LocalDateTime tokenExpiry, int id){
         this.email = email;
         this.role = role;
         this.authToken = authToken;
