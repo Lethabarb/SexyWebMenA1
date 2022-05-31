@@ -31,16 +31,48 @@ public class ArticleController {
     private CommentRepository commentRepos = new CommentRepository();
 
     private HashMap<String, String[]> subcategories = new HashMap<>();
-    //subcategories.put("Network", new String[] {"Can't connent", "Speed", "Constant dropouts"});
+    private String selectedCategory;
+    private String selectedSubCategory;
+
+    ArticleController(){
+        setUpSubcategories();
+        selectedCategory = "";
+        selectedSubCategory = "";
+    }
+
+    private void setUpSubcategories(){
+        subcategories.put("", new String[] {""});
+        subcategories.put("Network", new String[] {"Can't connent", "Speed", "Constant dropouts"});
+        subcategories.put("Software", new String[] {"Slow to load", "Won't load at all"});
+        subcategories.put("Hardware", new String[] {"Computer won't turn on", "Computer \"blue screens\"", "Disk drive", "Peripherals"});
+        subcategories.put("Email", new String[] {"Can't send", "Can't recieve", "SPAM/Phishing"});
+        subcategories.put("Account", new String[] {"Password reset", "Wrong details"});
+
+    }
 
     @Resource(name = "userManager")
     private UserManager userManager;
     
-    @RequestMapping("/articles")
-    public String articles(Model model) {
+    @RequestMapping("/articles") //dropdown box defaults back to "no filter"!!!!
+    public String articles(Model model, @RequestParam(defaultValue = "") String category, @RequestParam(defaultValue = "") String subCategory) {
+        setUpSubcategories();
+        selectedCategory = category;
+        selectedSubCategory = subCategory;
         Article[] articles = repository.getAll();
+        if(!selectedCategory.equals("") && selectedSubCategory.equals("")){
+            articles = repository.getByCatagory(selectedCategory);
+        }
+        else if(!selectedCategory.equals("") && !selectedSubCategory.equals("")){
+            articles = repository.getBySubCatagory(selectedCategory, selectedSubCategory);
+        }
+        model.addAttribute("subcategories", subcategories.get(selectedCategory));
+        model.addAttribute("selectedCategory", selectedCategory);
+        model.addAttribute("selectedSubcategory", selectedSubCategory);
         model.addAttribute("userManager", userManager);
         model.addAttribute("articles", articles);
+        for(int i=0; i<subcategories.get(selectedCategory).length; i++){
+            System.out.println("Subcategory = " + subcategories.get(selectedCategory)[i]);
+        }
         return "articles";
     }
 

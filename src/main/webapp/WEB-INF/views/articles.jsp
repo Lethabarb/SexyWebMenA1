@@ -17,6 +17,26 @@
     </div>
     <div class="Center">
         Filters?
+        <form action="/wsm-app/articles" method="GET">
+            <label for="category">Category:</label>
+            <select id="category" name="category" onchange="this.form.submit()">
+                <option value="">No Filter</option>
+                <option value="Network">Network</option>
+                <option value="Software">Software</option>
+                <option value="Hardware">Hardware</option>
+                <option value="Email">Email</option>
+                <option value="Account">Account</option>
+            </select>
+            <label for="subCategory">Subcategory</label>
+            <select id="subCategory" name="subCategory" onchange="this.form.submit()">
+                <option value="">No Filter</option>
+                <c:forEach var="subcategory" items="${subcategories}">
+                    <option value="${subcategory}">${subcategory}</option>
+                </c:forEach>
+            </select>
+        </form>
+
+
     </div>
     <div class="Center">
         <div class="FlexBox">
