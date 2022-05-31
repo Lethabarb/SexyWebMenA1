@@ -37,16 +37,22 @@ public class IssueController {
                 //return "error";
                 System.out.println("error!");
             }
-            Issue newIssue = new Issue(issue.getTitle(), issue.getDescription(),
-                "sol", issue.getCatagory(), "sc", 0001);
-            repository.createIssue(newIssue);
 
-            Issue[] issues = repository.getAll();
             User[] users = userRepos.getAll();
+            Issue newIssue = new Issue(issue.getTitle(), issue.getDescription(),
+                "sol", issue.getCatagory(), "sc", users[0].getId());
+
+
+            System.out.println(newIssue.toString());          
+            repository.createIssue(newIssue);       
+            Issue[] issues = repository.getAll();
+
             HashMap<Issue, User> issueMap = new HashMap<>();
+
             for (Issue i : issues) {
+
                 System.out.println(i.toString());
-                User u;
+
                 for (User user : users) {
                     if (i.getReporterId() == user.getId()) {
                         issueMap.put(i, user);
@@ -65,7 +71,7 @@ public class IssueController {
         System.out.println(u.getTokenExp().toString());
         return "issues";
     }
-    
+   
     @RequestMapping("/issues")
     public String handler(Model model) {
         Issue[] issues = repository.getAll();
