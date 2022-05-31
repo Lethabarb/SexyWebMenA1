@@ -68,4 +68,30 @@ public class ArticleController {
         model.addAttribute("comment", Cparent);
         return "createComment";
     }
+    @RequestMapping("/admin/article/{id}")
+    public String editArticle(Model model, @PathVariable("id") String id) {
+        Article article = repository.getById(id);
+        Comment[] comments = commentRepos.getArticleComments(id);
+        User[] usersArray = userRepos.getAll();
+        HashMap<Integer, User> users = new HashMap<>();
+        for (User user : usersArray) {
+            users.put(user.getId(), user);
+        }
+        model.addAttribute("userManager", userManager);
+        model.addAttribute("users", users);
+        model.addAttribute("article", article);
+        model.addAttribute("comments", comments);
+        return "editArticle";
+    }
+    @PostMapping("/admin/editArticle/{id}")
+    public String ArticleEdit(Model model,@RequestParam("id") String id, @RequestParam String title, @RequestParam String description, @RequestParam String solution, @RequestParam String catagory, @RequestParam String subCatagory) {
+        Article a = repository.getById(id);
+        a.setTitle(title);
+        a.setDescription(description);
+        a.setSolution(solution);
+        a.setCatagory(catagory);
+        a.setSubCatagory(subCatagory);
+        repository.updateArticle(a);
+        return String.format("redirect:/article/%s", id);
+    }
 }

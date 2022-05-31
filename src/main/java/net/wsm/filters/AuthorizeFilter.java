@@ -2,6 +2,7 @@ package net.wsm.filters;
 
 import java.io.IOException;
 
+import javax.annotation.Resource;
 import javax.servlet.*;
 import javax.servlet.annotation.WebFilter;
 import javax.servlet.http.HttpServletRequest;
@@ -15,6 +16,9 @@ import net.wsm.model.User;
 @Order(2)
 public class AuthorizeFilter implements Filter {
 
+	@Resource(name = "userManager")
+    private UserManager userManager;
+
 	@Override
 	public void init(FilterConfig filterConfig) throws ServletException {
 	}
@@ -23,10 +27,12 @@ public class AuthorizeFilter implements Filter {
 	public void doFilter(ServletRequest request, ServletResponse response,
 			FilterChain chain)
 			throws IOException, ServletException {
-		HttpServletRequest req = (HttpServletRequest) request;
-		if (req.getSession().getAttribute("thisClient") != null) {
-			User u = ((UserManager) req.getSession().getAttribute("thisClient")).getUser();
+		System.out.println("filter 2 : auth filter enter");
+		if (userManager.getUser() != null) {
+			User u = userManager.getUser();
+			System.out.println("filter 2 : role = " + u.getRole());
 			if (u.getRole() <= 0) {
+				System.out.println("filter 2 : role <= 0");
 				return;
 			}
 		}

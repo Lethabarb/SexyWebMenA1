@@ -24,7 +24,10 @@
             </div>
         </div>
         <div class="GridId">
-            ${article.id}
+            ${article.id} : 
+            <c:if test="${userManager.getUser().role == 1}">
+                <a class="Button" href="/wsm-app/admin/article/${article.id}"> edit </a>
+            </c:if>
         </div>
         <div class="GridCatagory">
             <p>${article.catagory} : ${article.subCatagory}</p>
@@ -62,7 +65,7 @@
                 <input type="text" value="A" name="relation" hidden/>
                 <input type="text" value="${userManager.userId}" name="author" hidden/>
                 <input type="text" value="/article/${article.id}" name="redirectPath" hidden/>
-                <input type="submit" value="submit"/>
+                <input type="submit" value="submit" class="Button"/>
             </form:form>
         </div>
     </div>

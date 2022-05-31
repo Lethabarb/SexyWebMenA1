@@ -19,6 +19,12 @@ form {
     margin: 0 40vw;
 }
 
+.pageForm {
+    width: 100%;
+    height: fit-content;
+    margin: 0;
+}
+
 td {
     text-align: center;
 }
@@ -319,4 +325,11 @@ td {
     color: black;
     font-weight: bold;
     font-size: 25px;
+}
+
+.Button {
+    padding: 15px;
+    border-radius: 5px;
+    border: solid black 0.5px;
+    background-color: white;
 }
