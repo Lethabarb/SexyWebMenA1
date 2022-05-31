@@ -25,32 +25,32 @@
             <h1>Login</h1>
         </div>
 
+        <div class="Comment">
+            <div class="CommentHead">
+                <c:set var="auth" value="${users.get(comment.author)}"/>
+                <p>${auth.firstName} ${auth.lastName}</p>
+                <p>${comment.date}</p>
+            </div>
+            <div class="Content">
+                <p>${comment.content}</p>
+            </div>
+        </div>
+
+
         <div class="Center">
-            <form:form method="POST" name="loginForm" action="createLogin">
-                <table>
-                    <tr>
-                        <td>Email: </td>
-                        <td>
-                            <input type="text" name="email"/>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>Password: </td>
-                        <td>
-                            <input type="password" name="password"/>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td colspan="2">
-                            <input type="submit" value="Submit"/>
-                        </td>
-                    </tr>
-                </table>
+            <form:form method="POST" action="/wsm-app/comment">
+                <textarea name="content"></textarea>
+                <input type="number" name="author" value="${userManager.userId}" hidden/>
+                <input type="text" name="parent" value="${comment.id}" hidden/>
+                <input type="text" name="relation" value="C" hidden/>
+                <input type="text" name="redirectPath" value="/${redirectPath}" hidden/>
+                <input type="submit" value="submit"/>
+
             </form:form>
         </div>
 
 
-        <script>
+<script>
 
         function Validate(){
 
@@ -80,5 +80,5 @@
           }
 
         </script>
-    </body>
+</body>
 </html>

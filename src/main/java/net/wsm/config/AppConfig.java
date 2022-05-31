@@ -1,28 +1,15 @@
 package net.wsm.config;
-import java.util.Collections;
 
-import javax.servlet.DispatcherType;
-import javax.servlet.http.HttpServletRequest;
-
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.web.servlet.FilterRegistrationBean;
-import org.springframework.boot.autoconfigure.web.servlet.WebMvcAutoConfiguration;
-/**
- * @author Ramesh Fadatare
- */
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.Scope;
-import org.springframework.context.annotation.ScopedProxyMode;
-import org.springframework.web.context.WebApplicationContext;
+import org.springframework.web.context.annotation.SessionScope;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 import org.springframework.web.servlet.view.InternalResourceViewResolver;
 import org.springframework.web.servlet.view.JstlView;
 
-import net.wsm.filters.AuthorizeFilter;
 import net.wsm.helper.UserManager;
 
 @Configuration
@@ -44,12 +31,9 @@ public class AppConfig implements WebMvcConfigurer{
     }
 
     @Bean
-    @Scope(
-      value = WebApplicationContext.SCOPE_SESSION, 
-      proxyMode = ScopedProxyMode.TARGET_CLASS)
+    @SessionScope //   value = WebApplicationContext.SCOPE_SESSION, //   proxyMode = ScopedProxyMode.TARGET_CLASS)
     public UserManager userManager() {
-        UserManager userManager = new UserManager();
-        return userManager;
+        return new UserManager();
     }
 
     // @Bean

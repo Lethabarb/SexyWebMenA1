@@ -9,7 +9,6 @@ import java.sql.ResultSet;
 import java.sql.Statement;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.util.UUID;
 
 import com.google.gson.*;
 
@@ -40,9 +39,9 @@ public class DbContext {
             ResultSet r = s.executeQuery(String.format("SELECT * FROM [%s] FOR JSON PATH", c.getSimpleName()));
             r.next();
             T[] o = (T[]) gson.fromJson(r.getString(1), Array.newInstance(c, 255).getClass());
+            con.close();
             return o;
         } catch (Exception e) {
-            System.out.println(e.getMessage());
             return null;
         }
     }
@@ -58,14 +57,13 @@ public class DbContext {
                     conds += " and ";
                 }
             }
-            System.out.println((String.format("SELECT * FROM [%s] WHERE %s FOR JSON PATH", c.getSimpleName(), conds)));
             ResultSet r = s
                     .executeQuery(String.format("SELECT * FROM [%s] WHERE %s FOR JSON PATH", c.getSimpleName(), conds));
             r.next();
             T[] o = (T[]) gson.fromJson(r.getString(1), Array.newInstance(c, 255).getClass());
+            con.close();
             return o;
         } catch (Exception e) {
-            System.out.println(e.getMessage());
             return null;
         }
     }
@@ -77,12 +75,13 @@ public class DbContext {
             Statement s = con.createStatement();
             String query = String.format("UPDATE [%s] SET ", O.getClass().getSimpleName());
             boolean first = true;
+            String idType = "";
+            System.out.println("FIELD LOOP:");
             for (Field f : O.getClass().getDeclaredFields()) {
                 if (!f.getName().equals("id")) {
                     if (!first)
                         query += ", ";
                     first = false;
-                    System.out.println(f.getType().getSimpleName());
                     if (f.getType().getSimpleName().equals("int")) {
                         Method m = O.getClass().getMethod(
                                 "get" + f.getName().substring(0, 1).toUpperCase() + f.getName().substring(1));
@@ -99,11 +98,13 @@ public class DbContext {
                                 "get" + f.getName().substring(0, 1).toUpperCase() + f.getName().substring(1));
                         query += String.format("[%s] = '%s'", f.getName(), m.invoke(O));
                     }
+                } else {
+                    idType = f.getType().getSimpleName();
                 }
             }
             query += String.format(" WHERE id = %d", id);
-            System.out.println(query);
             int r = s.executeUpdate(query);
+            con.close();
             return true;
         } catch (Exception e) {
             System.out.println("ERROR: ");
@@ -143,9 +144,10 @@ public class DbContext {
                     }
                 }
             }
-            query += String.format(" WHERE id = %s", id);
+            query += String.format(" WHERE id = '%s'", id);
             System.out.println(query);
             int r = s.executeUpdate(query);
+            con.close();
             return true;
         } catch (Exception e) {
             System.out.println("ERROR: ");
@@ -159,6 +161,7 @@ public class DbContext {
             Connection con = getDbConnection();
             Statement s = con.createStatement();
             s.execute(String.format("DELETE FROM [%s] WHERE id=%d", c.getSimpleName(), id));
+            con.close();
             return true;
         } catch (Exception e) {
             System.out.println("ERROR: ");
@@ -172,6 +175,7 @@ public class DbContext {
             Connection con = getDbConnection();
             Statement s = con.createStatement();
             s.execute(String.format("DELETE FROM [%s] WHERE id=%s", c.getSimpleName(), id));
+            con.close();
             return true;
         } catch (Exception e) {
             System.out.println("ERROR: ");
@@ -187,30 +191,33 @@ public class DbContext {
             String query = String.format("INSERT INTO [%s] VALUES (", O.getClass().getSimpleName());
             boolean first = true;
             for (Field f : O.getClass().getDeclaredFields()) {
-                if (!first)
-                    query += ", ";
-                first = false;
-                System.out.println(f.getType().getSimpleName());
-                if (f.getType().getSimpleName().equals("int")) {
-                    Method m = O.getClass().getMethod(
-                            "get" + f.getName().substring(0, 1).toUpperCase() + f.getName().substring(1));
-                    if (!m.getReturnType().getSimpleName().equals("int"))
-                        throw new IllegalArgumentException("method does not return int");
-                    query += String.format("%s", m.invoke(O));
-                } else if (f.getType().getSimpleName().equals("LocalDateTime")) {
-                    Method m = O.getClass().getMethod(
-                            "get" + f.getName().substring(0, 1).toUpperCase() + f.getName().substring(1));
-                    query += String.format("'%s'",
-                            java.sql.Date.valueOf(((LocalDateTime) m.invoke(O)).toLocalDate()));
-                } else {
-                    Method m = O.getClass().getMethod(
-                            "get" + f.getName().substring(0, 1).toUpperCase() + f.getName().substring(1));
-                    query += String.format("'%s'", m.invoke(O));
+                if (!f.getType().getSimpleName().substring(f.getType().getSimpleName().length() - 2).equals("[]")) {
+                    if (!first)
+                        query += ", ";
+                    first = false;
+                    System.out.println(f.getType().getSimpleName());
+                    if (f.getType().getSimpleName().equals("int")) {
+                        Method m = O.getClass().getMethod(
+                                "get" + f.getName().substring(0, 1).toUpperCase() + f.getName().substring(1));
+                        if (!m.getReturnType().getSimpleName().equals("int"))
+                            throw new IllegalArgumentException("method does not return int");
+                        query += String.format("%s", m.invoke(O));
+                    } else if (f.getType().getSimpleName().equals("LocalDateTime")) {
+                        Method m = O.getClass().getMethod(
+                                "get" + f.getName().substring(0, 1).toUpperCase() + f.getName().substring(1));
+                        query += String.format("'%s'",
+                                java.sql.Date.valueOf(((LocalDateTime) m.invoke(O)).toLocalDate()));
+                    } else {
+                        Method m = O.getClass().getMethod(
+                                "get" + f.getName().substring(0, 1).toUpperCase() + f.getName().substring(1));
+                        query += String.format("'%s'", m.invoke(O));
+                    }
                 }
             }
             query += ")";
             System.out.println(query);
             s.execute(query);
+            con.close();
             return true;
         } catch (Exception e) {
             System.out.println("ERROR: ");
@@ -218,6 +225,5 @@ public class DbContext {
             return false;
         }
     }
-
 
 }

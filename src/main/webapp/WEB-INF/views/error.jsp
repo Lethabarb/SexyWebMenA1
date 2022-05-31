@@ -3,29 +3,14 @@
 <!DOCTYPE html>
 <html>
 <head>
-<link rel="stylesheet" href="./static/site.css">
+    <link rel="stylesheet" href="/wsm-app/static/site.css">
+
     <meta charset="ISO-8859-1">
         <title>No Access</title>
     </head>
     <body>
-        <div class="Header">
-            <ul class="Nav">
-                <li>
-                    <a href="home-IT.html">Home</a>
-                </li>
-                <li>
-                    <a href="Issues.html">Issues</a>
-                </li>
-                <li>
-                    <a>Knowledge Base</a>
-                </li>
-            </ul>
-            <ul class="Login">
-                <li>
-                    <a href="home-User.html">Login</a>
-                </li>
-            </ul>
-        </div>
+<c:import var="navbar" url="./header.jsp"/>
+                ${navbar}
         <h1>You do not have access to this.</h1>
     </body>
 </html>

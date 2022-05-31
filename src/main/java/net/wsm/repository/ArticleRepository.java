@@ -16,6 +16,16 @@ public class ArticleRepository {
         return articles[0];
     }
 
+    public synchronized Article[] getByCatagory(String category){
+        Article[] articles = context.getAsync(Article.class, String.format("catagory = '%s'", category));
+        return articles;
+    }
+
+    public synchronized Article[] getBySubCatagory(String catagory, String subcatagory){
+        Article[] articles = context.getAsync(Article.class, String.format("catagory = '%s' AND subCatagory = '%s'", catagory, subcatagory));
+        return articles;
+    }
+
     public synchronized boolean createArticle(Article article) {
         return context.CreateAsync(article);
     }

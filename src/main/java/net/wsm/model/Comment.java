@@ -38,6 +38,9 @@ public class Comment {
     public void setId(String a) {
         id = a;
     }
+    public void newId() {
+        id = UUID.randomUUID().toString();
+    }
     public String getId() {
         return id.toString();
     }
@@ -75,5 +78,8 @@ public class Comment {
     }
     public String getParent() {
         return parent;
+    }
+    public String getRelation() {
+        return relation;
     }
 }

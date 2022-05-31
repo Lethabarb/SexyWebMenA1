@@ -48,13 +48,14 @@ public class User{
         this.authToken = "";
         this.contactNumber = "";
         this.tokenExp = LocalDateTime.now();
+        this.passwordHash = "";
     }
 
-    public String getPassword(){
+    public String getPasswordHash(){
         return passwordHash;
     }
 
-    public void setPassword(String pwHash){
+    public void setPasswordHash(String pwHash){
         this.passwordHash = pwHash;
     }
 

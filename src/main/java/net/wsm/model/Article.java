@@ -12,21 +12,19 @@ public class Article {
     private LocalDateTime dateOpened;
     private String catagory;
     private String subCatagory;
-    private ArrayList<Comment> comments = new ArrayList<>();
-    public Article() {}
+    public Article() {
+        id = "new";
+        title = "";
+        description = "";
+        dateOpened = LocalDateTime.now();
+        catagory = "";
+        subCatagory = "";
+    }
     public Article(String t, String d, String s, String c, String sc) {
         title = t;
         description = d;
         solution = s;
         id = UUID.randomUUID().toString();
-        catagory = c;
-        subCatagory = sc;
-    }
-    public Article(String t, String d, String s, String i, String c, String sc) {
-        title = t;
-        description = d;
-        solution = s;
-        id = i;
         catagory = c;
         subCatagory = sc;
     }
@@ -66,15 +64,6 @@ public class Article {
     }
     public LocalDateTime getDateOpened() {
         return dateOpened;
-    }
-    public void addComment(Comment c) {
-        comments.add(c);
-    }
-    public void setComments(ArrayList<Comment> c) {
-        comments = c;
-    }
-    public ArrayList<Comment> getComments() {
-        return comments;
     }
     public void setCatagory(String c) {
         catagory = c;
