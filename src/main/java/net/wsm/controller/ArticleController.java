@@ -1,6 +1,7 @@
 package net.wsm.controller;
 
 
+import java.util.ArrayList;
 import java.util.HashMap;
 
 import javax.annotation.Resource;
@@ -28,6 +29,9 @@ public class ArticleController {
     private ArticleRepository repository = new ArticleRepository();
     private UserRepository userRepos = new UserRepository();
     private CommentRepository commentRepos = new CommentRepository();
+
+    private HashMap<String, String[]> subcategories = new HashMap<>();
+    //subcategories.put("Network", new String[] {"Can't connent", "Speed", "Constant dropouts"});
 
     @Resource(name = "userManager")
     private UserManager userManager;
