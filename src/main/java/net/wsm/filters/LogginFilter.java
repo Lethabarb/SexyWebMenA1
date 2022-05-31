@@ -7,6 +7,7 @@ import javax.annotation.Resource;
 import javax.servlet.*;
 import javax.servlet.annotation.WebFilter;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.core.annotation.Order;
 
@@ -27,7 +28,8 @@ public class LogginFilter implements Filter {
 
 		System.out.print("filter 1 : loggin filter");
 		HttpServletRequest req = (HttpServletRequest) request;
-		UserManager userManager = (UserManager) req.getSession().getAttribute("userManager");
+		HttpSession session = req.getSession();
+		UserManager userManager = (UserManager) session.getAttribute("userManager");
 
 		if (userManager.getUser() != null) {
 			System.out.print("filter 1 : loggin filter");
