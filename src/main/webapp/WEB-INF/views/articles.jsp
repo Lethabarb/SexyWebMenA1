@@ -5,12 +5,12 @@
 <html>
 
 <head>
-    <link rel="stylesheet" href="/wsm-app/static/site.css">
+<link rel="stylesheet" href="/wsm-app/static/site.css">
 
 </head>
 
 <body>
-<c:import var="navbar" url="./header.jsp"/>
+    <c:import var="navbar" url="./header.jsp"/>
                 ${navbar}
     <div class="Title">
         <h1>articles</h1>
@@ -39,6 +39,13 @@
                     </th>
                 </tr>
             </table>
+            <c:if test="${userManager.getUser().role == 1}">
+            <table class="FlexTable">
+                <tr class="FlexRow">
+                    <td><a href="/wsm-app/admin/createArticle" class="Button">Add</a></td>
+                </tr>
+            </table>
+            </c:if>
             <c:forEach var="article" items="${articles}">
                 <table class="FlexTable">
                     <tr class="FlexRow">
@@ -62,7 +69,7 @@
             </c:forEach>
         </div>
     </div>
-    </div>
+</div>
 
 
 </body>
