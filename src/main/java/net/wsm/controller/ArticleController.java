@@ -1,6 +1,7 @@
 package net.wsm.controller;
 
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -110,7 +111,6 @@ public class ArticleController {
     }
     @RequestMapping("/admin/article/{id}")
     public String editArticle(Model model, @PathVariable("id") String id, ServletRequest request) {
-         System.out.print("admjin controller thing");
         Article article = repository.getById(id);
         Comment[] comments = commentRepos.getArticleComments(id);
         User[] usersArray = userRepos.getAll();
@@ -124,7 +124,7 @@ public class ArticleController {
         model.addAttribute("comments", comments);
         return "editArticle";
     }
-    @PostMapping("/admin/editArticle/{id}")
+    @PostMapping("/admin/editArticle")
     public String ArticleEdit(Model model,@RequestParam("id") String id, @RequestParam String title, @RequestParam String description, @RequestParam String solution, @RequestParam String catagory, @RequestParam String subCatagory) {
         Article a = repository.getById(id);
         a.setTitle(title);
@@ -134,5 +134,18 @@ public class ArticleController {
         a.setSubCatagory(subCatagory);
         repository.updateArticle(a);
         return String.format("redirect:/article/%s", id);
+    }
+    @RequestMapping("/admin/createArticle")
+    public String CreateArticle(Model model) {
+        Article a = new Article();
+        model.addAttribute("article", a);
+        return "createArticle";
+    }
+    @PostMapping("/admin/articleCreate")
+    public String ArticleCreate(Model model,@RequestParam("id") String id, @RequestParam String title, @RequestParam String description, @RequestParam String solution, @RequestParam String catagory, @RequestParam String subCatagory) {
+        Article a = new Article(title, description, solution, catagory, subCatagory);
+        a.setDateOpened(LocalDateTime.now());
+        repository.createArticle(a);
+        return String.format("redirect:/article/%s", a.getId());
     }
 }

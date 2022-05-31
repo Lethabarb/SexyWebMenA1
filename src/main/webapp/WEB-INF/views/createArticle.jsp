@@ -11,7 +11,7 @@
 <body>
     <c:import var="navbar" url="./header.jsp"/>
                 ${navbar}
-    <form:form class="pageForm" method="POST" action="/wsm-app/admin/editArticle">
+    <form:form class="pageForm" method="POST" action="/wsm-app/admin/articleCreate">
         <div class="GridContainer">
             <div class="GridTitle">
                 <input type="text" name="title" class="Title" value="${article.title}" id="formTitle">

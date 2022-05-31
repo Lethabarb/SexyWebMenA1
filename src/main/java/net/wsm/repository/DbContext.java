@@ -39,9 +39,9 @@ public class DbContext {
             ResultSet r = s.executeQuery(String.format("SELECT * FROM [%s] FOR JSON PATH", c.getSimpleName()));
             r.next();
             T[] o = (T[]) gson.fromJson(r.getString(1), Array.newInstance(c, 255).getClass());
+            con.close();
             return o;
         } catch (Exception e) {
-            System.out.println(e.getMessage());
             return null;
         }
     }
@@ -61,9 +61,9 @@ public class DbContext {
                     .executeQuery(String.format("SELECT * FROM [%s] WHERE %s FOR JSON PATH", c.getSimpleName(), conds));
             r.next();
             T[] o = (T[]) gson.fromJson(r.getString(1), Array.newInstance(c, 255).getClass());
+            con.close();
             return o;
         } catch (Exception e) {
-            System.out.println(e.getMessage());
             return null;
         }
     }
@@ -75,6 +75,8 @@ public class DbContext {
             Statement s = con.createStatement();
             String query = String.format("UPDATE [%s] SET ", O.getClass().getSimpleName());
             boolean first = true;
+            String idType = "";
+            System.out.println("FIELD LOOP:");
             for (Field f : O.getClass().getDeclaredFields()) {
                 if (!f.getName().equals("id")) {
                     if (!first)
@@ -96,10 +98,13 @@ public class DbContext {
                                 "get" + f.getName().substring(0, 1).toUpperCase() + f.getName().substring(1));
                         query += String.format("[%s] = '%s'", f.getName(), m.invoke(O));
                     }
+                } else {
+                    idType = f.getType().getSimpleName();
                 }
             }
             query += String.format(" WHERE id = %d", id);
             int r = s.executeUpdate(query);
+            con.close();
             return true;
         } catch (Exception e) {
             System.out.println("ERROR: ");
@@ -139,9 +144,10 @@ public class DbContext {
                     }
                 }
             }
-            query += String.format(" WHERE id = %s", id);
+            query += String.format(" WHERE id = '%s'", id);
             System.out.println(query);
             int r = s.executeUpdate(query);
+            con.close();
             return true;
         } catch (Exception e) {
             System.out.println("ERROR: ");
@@ -155,6 +161,7 @@ public class DbContext {
             Connection con = getDbConnection();
             Statement s = con.createStatement();
             s.execute(String.format("DELETE FROM [%s] WHERE id=%d", c.getSimpleName(), id));
+            con.close();
             return true;
         } catch (Exception e) {
             System.out.println("ERROR: ");
@@ -168,6 +175,7 @@ public class DbContext {
             Connection con = getDbConnection();
             Statement s = con.createStatement();
             s.execute(String.format("DELETE FROM [%s] WHERE id=%s", c.getSimpleName(), id));
+            con.close();
             return true;
         } catch (Exception e) {
             System.out.println("ERROR: ");
@@ -209,6 +217,7 @@ public class DbContext {
             query += ")";
             System.out.println(query);
             s.execute(query);
+            con.close();
             return true;
         } catch (Exception e) {
             System.out.println("ERROR: ");

@@ -58,9 +58,6 @@ public class CommentRepository {
                 }
 
             }
-            for (Comment comment : comments) {
-                System.out.println(comment.getId());
-            }
         }
         return comments == null ? new Comment[0] : comments;
     }
