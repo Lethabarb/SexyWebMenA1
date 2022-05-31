@@ -6,6 +6,7 @@ import javax.annotation.Resource;
 import javax.servlet.*;
 import javax.servlet.annotation.WebFilter;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.apache.catalina.core.ApplicationContext;
 import org.springframework.core.annotation.Order;
@@ -27,7 +28,8 @@ public class AuthorizeFilter implements Filter {
 			FilterChain chain)
 			throws IOException, ServletException {
 		HttpServletRequest req = (HttpServletRequest) request;
-		UserManager userManager = (UserManager) req.getSession().getAttribute("userManager");
+		HttpSession session = req.getSession();
+		UserManager userManager = (UserManager) session.getAttribute("userManager");
 		System.out.println("filter 2 : auth filter enter");
 		if (userManager.getUser() != null) {
 			User u = userManager.getUser();

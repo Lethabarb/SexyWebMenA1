@@ -14,6 +14,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import javax.servlet.http.HttpSession;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -78,7 +79,8 @@ public class ArticleController {
     @RequestMapping("/admin/article/{id}")
     public String editArticle(Model model, @PathVariable("id") String id, ServletRequest request) {
 		HttpServletRequest req = (HttpServletRequest) request;
-        req.getSession().setAttribute("userManager", userManager);
+        HttpSession session = req.getSession();
+        session.setAttribute("userManager", userManager);
         Article article = repository.getById(id);
         Comment[] comments = commentRepos.getArticleComments(id);
         User[] usersArray = userRepos.getAll();
