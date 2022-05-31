@@ -78,6 +78,7 @@ public class ArticleController {
     }
     @RequestMapping("/admin/article/{id}")
     public String editArticle(Model model, @PathVariable("id") String id, ServletRequest request) {
+         System.out.print("admjin controller thing");
         Article article = repository.getById(id);
         Comment[] comments = commentRepos.getArticleComments(id);
         User[] usersArray = userRepos.getAll();

@@ -31,7 +31,9 @@ public class LogginFilter implements Filter {
 		HttpSession session = req.getSession();
 		boolean signedIn = (boolean) session.getAttribute("isSignedIn");
 		LocalDateTime TokenExp = (LocalDateTime) session.getAttribute("Exp");
-			if (signedIn || TokenExp.isBefore(LocalDateTime.now())) {
+		System.out.println(signedIn);
+		System.out.println(TokenExp);
+			if (!signedIn || TokenExp.isBefore(LocalDateTime.now())) {
 				System.out.print("filter 1 : loggin filter");
 				return;
 			}

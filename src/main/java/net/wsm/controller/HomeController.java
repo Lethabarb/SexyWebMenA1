@@ -13,14 +13,17 @@ import net.wsm.helper.UserManager;
 
 @Controller
 public class HomeController {
+    private boolean first = true;
     @Resource(name = "userManager")
     private UserManager userManager;
     
     @RequestMapping("/")
     public String home(Model model, ServletRequest request){
-        HttpServletRequest req = (HttpServletRequest) request;
-        HttpSession session = req.getSession();
-        session.setAttribute("isSignedIn", userManager.getIsSignedIn());
+        if (first) {
+            HttpServletRequest req = (HttpServletRequest) request;
+            HttpSession session = req.getSession();
+            session.setAttribute("isSignedIn", userManager.getIsSignedIn());
+        }
         model.addAttribute("userManager", userManager);
         return "home";
     }
