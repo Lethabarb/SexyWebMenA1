@@ -14,7 +14,6 @@ public class HomeController {
     
     @RequestMapping("/")
     public String home(Model model){
-        System.out.println("home");
         model.addAttribute("userManager", userManager);
         return "home";
     }

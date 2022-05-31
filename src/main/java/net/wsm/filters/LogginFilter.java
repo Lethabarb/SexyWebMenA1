@@ -12,12 +12,9 @@ import org.springframework.core.annotation.Order;
 
 import net.wsm.helper.UserManager;
 
-@WebFilter(filterName = "logginFilter", urlPatterns = { "/issues", "/issue/*", "/comment" })
+@WebFilter(filterName = "logginFilter", urlPatterns = { "/issues","/admin/*", "/issue/*", "/comment" })
 @Order(1)
 public class LogginFilter implements Filter {
-
-	@Resource(name = "userManager")
-	private UserManager userManager;
 
 	@Override
 	public void init(FilterConfig filterConfig) throws ServletException {
@@ -29,6 +26,8 @@ public class LogginFilter implements Filter {
 			throws IOException, ServletException {
 
 		System.out.print("filter 1 : loggin filter");
+		HttpServletRequest req = (HttpServletRequest) request;
+		UserManager userManager = (UserManager) req.getSession().getAttribute("userManager");
 
 		if (userManager.getUser() != null) {
 			System.out.print("filter 1 : loggin filter");

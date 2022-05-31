@@ -4,6 +4,8 @@ package net.wsm.controller;
 import java.util.HashMap;
 
 import javax.annotation.Resource;
+import javax.servlet.ServletRequest;
+import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -54,7 +56,8 @@ public class ArticleController {
     }
 
     @PostMapping("/comment")
-    public String Comment(@RequestParam int author, @RequestParam String relation, @RequestParam String parent, @RequestParam String content, @RequestParam(defaultValue = "/") String redirectPath) {
+    public String Comment(HttpServletRequest request, @RequestParam int author, @RequestParam String relation, @RequestParam String parent, @RequestParam String content, @RequestParam(defaultValue = "/") String redirectPath) {
+        request.getSession().setAttribute("userManager", userManager);
         Comment c = new Comment(author, content, relation, parent);
         commentRepos.createComment(c);
         return String.format("redirect:%s", redirectPath);
@@ -69,7 +72,9 @@ public class ArticleController {
         return "createComment";
     }
     @RequestMapping("/admin/article/{id}")
-    public String editArticle(Model model, @PathVariable("id") String id) {
+    public String editArticle(Model model, @PathVariable("id") String id, ServletRequest request) {
+		HttpServletRequest req = (HttpServletRequest) request;
+        req.getSession().setAttribute("userManager", userManager);
         Article article = repository.getById(id);
         Comment[] comments = commentRepos.getArticleComments(id);
         User[] usersArray = userRepos.getAll();

@@ -7,7 +7,9 @@ import javax.servlet.*;
 import javax.servlet.annotation.WebFilter;
 import javax.servlet.http.HttpServletRequest;
 
+import org.apache.catalina.core.ApplicationContext;
 import org.springframework.core.annotation.Order;
+import org.springframework.web.context.support.WebApplicationContextUtils;
 
 import net.wsm.helper.UserManager;
 import net.wsm.model.User;
@@ -15,9 +17,6 @@ import net.wsm.model.User;
 @WebFilter(filterName = "authorizeFilter", urlPatterns = "/admin/*")
 @Order(2)
 public class AuthorizeFilter implements Filter {
-
-	@Resource(name = "userManager")
-    private UserManager userManager;
 
 	@Override
 	public void init(FilterConfig filterConfig) throws ServletException {
@@ -27,6 +26,8 @@ public class AuthorizeFilter implements Filter {
 	public void doFilter(ServletRequest request, ServletResponse response,
 			FilterChain chain)
 			throws IOException, ServletException {
+		HttpServletRequest req = (HttpServletRequest) request;
+		UserManager userManager = (UserManager) req.getSession().getAttribute("userManager");
 		System.out.println("filter 2 : auth filter enter");
 		if (userManager.getUser() != null) {
 			User u = userManager.getUser();
