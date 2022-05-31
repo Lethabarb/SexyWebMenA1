@@ -22,7 +22,7 @@
             <select id="category" name="category" onchange="this.form.submit()">
                 <option value="">No Filter</option>
                 <c:choose>
-                    <c:when test="${selectedCategory = "Network"}">
+                    <c:when test="${selectedCategory == "Network"}">
                         <option value="Network" selected>Network</option>
                     </c:when>
                     <c:otherwise>
@@ -30,7 +30,7 @@
                     </c:otherwise>
                 </c:choose>
                 <c:choose>
-                    <c:when test="${selectedCategory = "Software"}">
+                    <c:when test="${selectedCategory == "Software"}">
                         <option value="Software" selected>Software</option>
                     </c:when>
                     <c:otherwise>
@@ -38,7 +38,7 @@
                     </c:otherwise>
                 </c:choose>
                 <c:choose>
-                    <c:when test="${selectedCategory = "Hardware"}">
+                    <c:when test="${selectedCategory == "Hardware"}">
                         <option value="Hardware" selected>Hardware</option>
                     </c:when>
                     <c:otherwise>
@@ -46,7 +46,7 @@
                     </c:otherwise>
                 </c:choose>
                 <c:choose>
-                    <c:when test="${selectedCategory = "Email"}">
+                    <c:when test="${selectedCategory == "Email"}">
                         <option value="Email" selected>Email</option>
                     </c:when>
                     <c:otherwise>
@@ -54,7 +54,7 @@
                     </c:otherwise>
                 </c:choose>
                 <c:choose>
-                    <c:when test="${selectedCategory = "Account"}">
+                    <c:when test="${selectedCategory == "Account"}">
                         <option value="Account" selected>Account</option>
                     </c:when>
                     <c:otherwise>
