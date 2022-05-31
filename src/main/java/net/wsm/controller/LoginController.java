@@ -8,6 +8,9 @@ import javax.annotation.Resource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+
+import javax.servlet.ServletRequest;
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -31,8 +34,13 @@ public class LoginController{
     }
 
     @PostMapping("/createLogin")
-    public String submit(Model model, @ModelAttribute("loginModel") loginModel loginModel){
+    public String submit(Model model, @ModelAttribute("loginModel") loginModel loginModel, ServletRequest request){
+        HttpServletRequest req = (HttpServletRequest) request;
+        HttpSession session = req.getSession();
         boolean success = userManager.SignIn(loginModel);
+        session.setAttribute("isSignedIn", userManager.getIsSignedIn());
+        session.setAttribute("role", userManager.getUser().getRole());
+        session.setAttribute("Exp", userManager.getUser().getTokenExp());
         if (success) return "redirect:/";
         model.addAttribute("error", true);
         model.addAttribute("errorMessage", "login details incorrect");
@@ -40,8 +48,12 @@ public class LoginController{
     }
 
     @RequestMapping(value="/logout")
-    public String logout(){
+    public String logout(ServletRequest request){
         userManager.SignOut();
+        HttpServletRequest req = (HttpServletRequest) request;
+        HttpSession session = req.getSession();
+        session.setAttribute("isSignedIn", userManager.getIsSignedIn());
+        session.setAttribute("role", userManager.getUser().getRole());
         return "home";
     }
 }

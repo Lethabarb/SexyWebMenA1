@@ -13,7 +13,7 @@ import org.springframework.core.annotation.Order;
 
 import net.wsm.helper.UserManager;
 
-@WebFilter(filterName = "logginFilter", urlPatterns = { "/issues","/admin/*", "/issue/*", "/comment" })
+@WebFilter(filterName = "logginFilter", urlPatterns = { "/issues", "/admin/*", "/issue/*", "/comment" })
 @Order(1)
 public class LogginFilter implements Filter {
 
@@ -29,15 +29,12 @@ public class LogginFilter implements Filter {
 		System.out.print("filter 1 : loggin filter");
 		HttpServletRequest req = (HttpServletRequest) request;
 		HttpSession session = req.getSession();
-		UserManager userManager = (UserManager) session.getAttribute("userManager");
-
-		if (userManager.getUser() != null) {
-			System.out.print("filter 1 : loggin filter");
-			if (!userManager.getIsSignedIn() || userManager.getUser().getTokenExp().isAfter(LocalDateTime.now())) {
+		boolean signedIn = (boolean) session.getAttribute("isSignedIn");
+		LocalDateTime TokenExp = (LocalDateTime) session.getAttribute("Exp");
+			if (signedIn || TokenExp.isBefore(LocalDateTime.now())) {
 				System.out.print("filter 1 : loggin filter");
 				return;
 			}
-		}
 		chain.doFilter(request, response);
 
 	}

@@ -43,7 +43,7 @@ public class UserManager implements Serializable{
         isSignedIn = false;
     }
     public User getUser() {
-        return user;
+        return user == null ? new User("no user", 0, "no user") : user;
     }
     public boolean getIsSignedIn() {
         return isSignedIn;

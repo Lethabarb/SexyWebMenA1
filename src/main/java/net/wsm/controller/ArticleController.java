@@ -74,9 +74,6 @@ public class ArticleController {
     }
     @RequestMapping("/admin/article/{id}")
     public String editArticle(Model model, @PathVariable("id") String id, ServletRequest request) {
-		HttpServletRequest req = (HttpServletRequest) request;
-        HttpSession session = req.getSession();
-        session.setAttribute("userManager", userManager);
         Article article = repository.getById(id);
         Comment[] comments = commentRepos.getArticleComments(id);
         User[] usersArray = userRepos.getAll();
