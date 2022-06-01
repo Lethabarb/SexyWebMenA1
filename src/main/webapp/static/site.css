@@ -283,6 +283,92 @@ td {
     grid-area: GridDate;
 }
 
+/* Grid but for issues */
+
+.IGridContainer {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    grid-template-rows: 1fr 1fr 1fr 2fr 4fr;
+    gap: 1vh 3vh;
+    grid-template-areas: "IGridTitle IGridId" "IGridDescription IGridCatagory" "IGridSolution IGridStatus" "IGridSolution IGridDate" "IGridSolution .";
+    padding: 3vh;
+}
+
+.IGridTitle,
+.IGridDescription,
+.IGridSolution,
+.IGridId,
+.IGridCatagory,
+.IGridDate {
+    background-color: white;
+    box-shadow: 0 0 1vh gray;
+    padding: 2vh;
+}
+
+.IGridTitle {
+    grid-area: IGridTitle;
+}
+
+.IGridDescription {
+    grid-area: IGridDescription;
+}
+
+.IGridSolution {
+    grid-area: IGridSolution;
+}
+
+.IGridId {
+    grid-area: IGridId;
+}
+
+.IGridCatagory {
+    grid-area: IGridCatagory;
+}
+
+.IGridDate {
+    grid-area: IGridDate;
+}
+
+.IGridStatus0 {
+    grid-area: IGridStatus;
+    color: white;
+    background-color: var(--status0);
+    box-shadow: 0 0 1vh gray;
+    padding: 2vh;
+}
+
+.IGridStatus1 {
+    grid-area: IGridStatus;
+    color: white;
+    background-color: var(--status0);
+    box-shadow: 0 0 1vh gray;
+    padding: 2vh;
+}
+
+.IGridStatus2 {
+    grid-area: IGridStatus;
+    color: white;
+    background-color: var(--status0);
+    box-shadow: 0 0 1vh gray;
+    padding: 2vh;
+}
+
+.IGridStatus3 {
+    grid-area: IGridStatus;
+    color: white;
+    background-color: var(--status0);
+    box-shadow: 0 0 1vh gray;
+    padding: 2vh;
+}
+
+.IGridStatus4 {
+    grid-area: IGridStatus;
+    color: white;
+    background-color: var(--status0);
+    box-shadow: 0 0 1vh gray;
+    padding: 2vh;
+}
+
 
 /* Make comments same width and main section */
 

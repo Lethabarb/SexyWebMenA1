@@ -70,10 +70,13 @@ public class IssueController {
         }
         User[] users = userRepos.getAll();
         HashMap<Issue, User> issueMap = new HashMap<>();
-        for (Issue i : issues) {
-            for (User u : users) {
-                if (i.getReporter() == u.getId()) {             
-                    issueMap.put(i, u);
+        if (issues != null)
+        {
+            for (Issue i : issues) {
+                for (User u : users) {
+                    if (i.getReporter() == u.getId()) {             
+                        issueMap.put(i, u);
+                    }
                 }
             }
         }
@@ -150,13 +153,14 @@ public class IssueController {
     }
 
     @PostMapping("/admin/editIssue")
-    public String issueEdit(Model model,@RequestParam("id") String id, @RequestParam String title, @RequestParam String description, @RequestParam String solution, @RequestParam String catagory, @RequestParam String subCatagory) {
+    public String issueEdit(Model model,@RequestParam("id") String id, @RequestParam String title, @RequestParam String description, @RequestParam String solution, @RequestParam String catagory, @RequestParam String subCatagory, @RequestParam int status) {
         Issue i = repository.getById(id);
         i.setTitle(title);
         i.setDescription(description);
         i.setSolution(solution);
         i.setCatagory(catagory);
         i.setSubCatagory(subCatagory);
+        i.setStatus(status);
         repository.updateIssue(i);
         return String.format("redirect:/issue/%s", id);
     }

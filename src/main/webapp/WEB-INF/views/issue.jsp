@@ -11,40 +11,63 @@
 <body>
     <c:import var="navbar" url="./header.jsp"/>
                 ${navbar}
-    <div class="GridContainer">
-        <div class="GridTitle">
+    <div class="IGridContainer">
+        <div class="IGridTitle">
             <p class="Title">${issue.title}</p>
         </div>
-        <div class="GridDescription">
+        <div class="IGridDescription">
             <p>${issue.description}</p>
         </div>
-        <div class="GridSolution">
+        <div class="IGridSolution">
             <div class="Solution">
                 ${issue.solution}
             </div>
         </div>
-        <div class="GridId">
+        <div class="IGridId">
             ${issue.id} : 
             <c:if test="${userManager.getUser().role == 1}">
                 <a class="Button" href="/wsm-app/admin/issue/${issue.id}"> edit </a>
             </c:if>
         </div>
-        <div class="GridCatagory">
+        <div class="IGridCatagory">
             <p>${issue.catagory} : ${issue.subCatagory}</p>
         </div>
-        <div class="GridDate">
-            <div style="float:left">
-                <p>
-                    <strong>Open</strong>
-                </p>
-                <p>${issue.dateOpened}</p>
-            </div>
-            <div style="float:right">
-                <p>
-                    <strong>Closed</strong>
-                </p>
-                <p>${issue.dateClosed}</p>
-            </div>
+        <div class="IGridStatus${issue.status}">
+            <c:if test = "${issue.status == 0}">
+            <p>
+                Submitted
+            </p>
+            </c:if>
+            <c:if test = "${issue.status == 1}">
+            <p>
+                In Progress
+            </p>
+            </c:if>
+            <c:if test = "${issue.status == 2}">
+            <p>
+                Solution
+            </p>
+            </c:if>
+            <c:if test = "${issue.status == 3}">
+            <p>
+                Accepted
+            </p>
+            </c:if>
+            <c:if test = "${issue.status == 4}">
+            <p>
+                Rejected
+            </p>
+            </c:if>
+        </div>
+        <div class="IGridDate">
+            <p>
+                <strong>Open</strong>
+            </p>
+            <p>${issue.dateOpened}</p>
+            <p>
+                <strong>Closed</strong>
+            </p>
+            <p>${issue.dateClosed}</p>
         </div>
     </div>
     <div class="Comments">

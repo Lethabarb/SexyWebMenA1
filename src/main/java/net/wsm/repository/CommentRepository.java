@@ -65,14 +65,16 @@ public class CommentRepository {
     public synchronized Comment[] getIssueComments(String issueId) {
         Comment[] comments = context.getAsync(Comment.class, "[relation] = 'I'",
                 String.format("parent = '%s'", issueId));
-        for (Comment comment : comments) {
-            Comment[] replies = getReplies(comment.getId());
-            if (replies != null) {
-                for (Comment comment2 : replies) {
-                    comment.addReply(comment2);
+        if (comments != null) {
+            for (Comment comment : comments) {
+                Comment[] replies = getReplies(comment.getId());
+                if (replies != null) {
+                    for (Comment comment2 : replies) {
+                        comment.addReply(comment2);
+                    }
                 }
             }
         }
-        return comments;
+        return comments == null ? new Comment[0] : comments;
     }
 }

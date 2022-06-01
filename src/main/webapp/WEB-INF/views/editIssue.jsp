@@ -12,40 +12,45 @@
     <c:import var="navbar" url="./header.jsp"/>
                 ${navbar}
     <form:form class="pageForm" method="POST" action="/wsm-app/admin/editIssue">
-        <div class="GridContainer">
-            <div class="GridTitle">
+        <div class="IGridContainer">
+            <div class="IGridTitle">
                 <input type="text" name="title" class="Title" value="${issue.title}" id="formTitle">
             </div>
-            <div class="GridDescription">
+            <div class="IGridDescription">
                 <input type="text" value="${issue.description}" name="description"  id="formDescription"/>
             </div>
-            <div class="GridSolution">
+            <div class="IGridSolution">
                 <textarea name="solution" class="Solution" cols="80" rows="10" minlength="5" maxlength="500" id="formSolution">${issue.solution}</textarea>
             </div>
-            <div class="GridId">
+            <div class="IGridId">
 
             <p id="Id">${issue.id}</p>
                 <input type="text" value="${issue.id}" name="id" hidden id="formId"/>
                 <input class="Button" type="submit" value="save" onclick="return validate()"/>
             </div>
-            <div class="GridCatagory">
+            <div class="IGridCatagory">
                 <input id="formCatagory" type="text" value="${issue.catagory}" name="catagory" /> : <input id="formSub" type="text" value="${issue.subCatagory}" name="subCatagory" />
             </div>
-            <div class="GridDate">
-                <div style="float:left">
-                    <p>
-                        <strong>Open</strong>
-                    <input type="datetime-local" value="${issue.dateOpened}" name="dateOpened" hidden/>
-                    </p>
-                    <p>${issue.dateOpened}</p>
-                </div>
-                <div style="float:right">
-                    <p>
-                        <strong>Closed</strong>
-                    <input type="datetime-local" value="${issue.dateClosed}" name="dateClosed" hidden/>
-                    </p>
-                    <p>${issue.dateClosed}</p>
-                </div>
+            <div class="IGridStatus${issue.status}">
+                <select id="formStatus" name="status">
+                    <option value="0">Submitted</option>
+                    <option value="1">In Progress</option>
+                    <option value="2">Solution</option>
+                    <option value="3">Accepted</option>
+                    <option value="4">Rejected</option>
+                </select>
+            </div>
+            <div class="IGridDate">
+                <p>
+                    <strong>Open</strong>
+                <input type="datetime-local" value="${issue.dateOpened}" name="dateOpened" hidden/>
+                </p>
+                <p>${issue.dateOpened}</p>
+                <p>
+                    <strong>Closed</strong>
+                <input type="datetime-local" value="${issue.dateClosed}" name="dateClosed" hidden/>
+                </p>
+                <p>${issue.dateClosed}</p>
             </div>
         </div>
         <div class="Comments">
