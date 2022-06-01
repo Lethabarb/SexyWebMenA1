@@ -5,12 +5,17 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <meta charset="ISO-8859-1">
-        <title>New Issue Form WIP</title>
+        <link rel="stylesheet" href="/wsm-app/static/site.css">
+    
     </head>
-   <body>
-       <h1>New Issue</h1>
-       <div class="newIssueDiv">
+    
+    <body>
+    <c:import var="navbar" url="./header.jsp"/>
+                    ${navbar}
+        <div class="Title">   
+            <h1>New Issue</h1>
+        </div>
+       <div>
            <form:form method="post" action="/wsm-app/addIssue">
                <table>
                    <tr>
@@ -23,12 +28,13 @@
                     </tr>
                     <tr>
                         <td> 
-                            <form:select path="catagory"> 
-                            <form:option value="0" label="Network"/>
-                            <form:option value="1" label="Software"/>
-                            <form:option value="2" label="Hardware"/>
-                            <form:option value="3" label="Email"/>
-                            <form:option value="4" label="Account"/>
+                            <form:select path="catagory">
+                            <form:option value="Category" selected="true" disabled="true"/>
+                            <form:option value="Network"/>
+                            <form:option value="Software"/>
+                            <form:option value="Hardware"/>
+                            <form:option value="Email"/>
+                            <form:option value="Account"/>
                             </form:select>
                         </td>
                     </tr>

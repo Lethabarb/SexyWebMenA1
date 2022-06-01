@@ -9,13 +9,12 @@ public class Issue {
     private String title;
     private String description;
     private String solution = "";
+    private int reporter;
     private LocalDateTime dateOpened;
     private LocalDateTime dateClosed;
     private String catagory;
-    private String subCatagory;
-    private int reporterId;
+    private String subCatagory; 
     private int status;
-    private ArrayList<Comment> comments = new ArrayList<>();
     public Issue() {}
     public Issue(String t, String d, String s, String c, String sc, int r) {
         title = t;
@@ -24,7 +23,9 @@ public class Issue {
         id = UUID.randomUUID().toString();
         catagory = c;
         subCatagory = sc;
-        reporterId = r;
+        reporter = r;
+        dateOpened = LocalDateTime.now();
+        dateClosed = LocalDateTime.now().plusHours(1);
     }
     public Issue(String i, String t, String d, String s, String c, String sc, int r) {
         title = t;
@@ -33,7 +34,9 @@ public class Issue {
         id = i;
         catagory = c;
         subCatagory = sc;
-        reporterId = r;
+        reporter = r;
+        dateOpened = LocalDateTime.now();
+        dateClosed = LocalDateTime.now().plusHours(1);
     }
     public Issue(String i, String t, String d, String s, LocalDateTime op, LocalDateTime cl, String c, String sc, int r) {
         title = t;
@@ -44,7 +47,7 @@ public class Issue {
         subCatagory = sc;
         dateOpened = op;
         dateClosed = cl;
-        reporterId = r;
+        reporter = r;
     }
 
     public void setTitle(String t) {
@@ -83,15 +86,6 @@ public class Issue {
     public LocalDateTime getDateClosed() {
         return dateClosed;
     }
-    public void addComment(Comment c) {
-        comments.add(c);
-    }
-    public void setComments(ArrayList<Comment> c) {
-        comments = c;
-    }
-    public ArrayList<Comment> getComments() {
-        return comments;
-    }
     public void setCatagory(String c) {
         catagory = c;
     }
@@ -107,11 +101,11 @@ public class Issue {
     public String getId() {
         return id;
     }
-    public void setReporterId(int id) {
-        reporterId = id;
+    public void setReporter(int id) {
+        reporter = id;
     }
-    public int getReporterId() {
-        return reporterId;
+    public int getReporter() {
+        return reporter;
     }
     public void setStatus(int s) {
         status = s;
@@ -123,6 +117,6 @@ public class Issue {
         return status;
     }
     public String toString() {
-        return String.format("USER: \n id: %s \n title: %s \n desc: %s \n soln: %s \n reporter: %s \n dateOpened: %s \n dateClosed: %s \n cat: %s \n subcat: %s \n status: %s  ", id, title, description, solution, reporterId, dateOpened.toString(), dateClosed.toString(), catagory, subCatagory, status);
+        return String.format("USER: \n id: %s \n title: %s \n desc: %s \n soln: %s \n reporter: %s \n dateOpened: %s \n dateClosed: %s \n cat: %s \n subcat: %s \n status: %s  ", id, title, description, solution, reporter, dateOpened.toString(), dateClosed.toString(), catagory, subCatagory, status);
     }
 }

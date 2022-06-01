@@ -16,6 +16,16 @@ public class IssueRepository {
         return issues[0];
     }
 
+    public synchronized Issue[] getByCatagory(String category){
+        Issue[] issues = context.getAsync(Issue.class, String.format("catagory = '%s'", category));
+        return issues;
+    }
+
+    public synchronized Issue[] getBySubCatagory(String catagory, String subcatagory){
+        Issue[] issues = context.getAsync(Issue.class, String.format("catagory = '%s' AND subCatagory = '%s'", catagory, subcatagory));
+        return issues;
+    }
+
     public synchronized boolean createIssue(Issue issue) {
         return context.CreateAsync(issue);
     }

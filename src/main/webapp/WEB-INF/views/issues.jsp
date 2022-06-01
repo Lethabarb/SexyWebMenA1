@@ -18,6 +18,61 @@
     <div class="Center">
         Filters?
     </div>
+
+    <form action="/wsm-app/issues" method="GET">
+        <label for="category">Category:</label>
+        <select id="category" name="category" onchange="this.form.submit()">
+            <option value="">No Filter</option>
+            <c:choose>
+                <c:when test="${selectedCategory == 'Network'}">
+                    <option value="Network" selected>Network</option>
+                </c:when>
+                <c:otherwise>
+                    <option value="Network">Network</option>
+                </c:otherwise>
+            </c:choose>
+            <c:choose>
+                <c:when test="${selectedCategory == 'Software'}">
+                    <option value="Software" selected>Software</option>
+                </c:when>
+                <c:otherwise>
+                    <option value="Software">Software</option>
+                </c:otherwise>
+            </c:choose>
+            <c:choose>
+                <c:when test="${selectedCategory == 'Hardware'}">
+                    <option value="Hardware" selected>Hardware</option>
+                </c:when>
+                <c:otherwise>
+                    <option value="Hardware">Hardware</option>
+                </c:otherwise>
+            </c:choose>
+            <c:choose>
+                <c:when test="${selectedCategory == 'Email'}">
+                    <option value="Email" selected>Email</option>
+                </c:when>
+                <c:otherwise>
+                    <option value="Email">Email</option>
+                </c:otherwise>
+            </c:choose>
+            <c:choose>
+                <c:when test="${selectedCategory == 'Account'}">
+                    <option value="Account" selected>Account</option>
+                </c:when>
+                <c:otherwise>
+                    <option value="Account">Account</option>
+                </c:otherwise>
+            </c:choose>
+        </select>
+        <label for="subCategory">Subcategory</label>
+        <select id="subCategory" name="subCategory" onchange="this.form.submit()">
+            <option value="">No Filter</option>
+            <c:forEach var="subcategory" items="${subcategories}">
+                <option value="${subcategory}">${subcategory}</option>
+            </c:forEach>
+        </select>
+    </form>
+
     <div class="Center">
         <div class="FlexBox">
             <table class="FlexTable">
@@ -45,11 +100,20 @@
                     </th>
                 </tr>
             </table>
+            <c:if test="${userManager.getUser().role == 1}">
+                <table class="FlexTable">
+                    <tr class="FlexRow">
+                        <td>
+                            <a href="/wsm-app/admin/newIssue" class="Button">Add</a>
+                        </td>
+                    </tr>
+                </table>
+            </c:if>
             <c:forEach var="issue" items="${issues}">
                 <table class="FlexTable">
                     <tr class="FlexRow">
                         <td>
-                            <p>${issue.id}</p>
+                            <a href="issue/${issue.id}">${issue.id}</a>
                         </td>
                         <td>
                             <p>${issue.title}</p>
