@@ -103,7 +103,7 @@ public class IssueController {
             }
             User[] users = userRepos.getAll();
             Issue newIssue = new Issue(issue.getTitle(), issue.getDescription(),
-                "solution", issue.getCatagory(), "subcat", users[1].getId());
+                "solution", issue.getCatagory(), issue.getSubCatagory(), users[1].getId());
             System.out.println(newIssue.toString());          
             repository.createIssue(newIssue);       
             Issue[] issues = repository.getAll();
@@ -161,6 +161,10 @@ public class IssueController {
         i.setCatagory(catagory);
         i.setSubCatagory(subCatagory);
         i.setStatus(status);
+        if (i.getStatus() == 3)
+        {
+            i.setDateClosed(LocalDateTime.now());
+        }
         repository.updateIssue(i);
         return String.format("redirect:/issue/%s", id);
     }

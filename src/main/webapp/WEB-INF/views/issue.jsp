@@ -64,10 +64,12 @@
                 <strong>Open</strong>
             </p>
             <p>${issue.dateOpened}</p>
-            <p>
-                <strong>Closed</strong>
-            </p>
-            <p>${issue.dateClosed}</p>
+            <c:if test = "${issue.status == 3}">
+                <p>
+                    <strong>Closed</strong>
+                </p>
+                <p>${issue.dateClosed}</p>
+            </c:if>        
         </div>
     </div>
     <div class="Comments">

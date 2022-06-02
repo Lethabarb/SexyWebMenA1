@@ -167,8 +167,8 @@ td {
     --status0: rgb(78, 47, 0);
     --status1: rgb(255, 196, 0);
     --status2: rgb(170, 102, 0);
-    --status3: rgb(204, 0, 0);
-    --status4: rgb(0, 177, 0);
+    --status3: rgb(0, 177, 0);
+    --status4: rgb(204, 0, 0);
 }
 
 .Status0 {
@@ -340,7 +340,7 @@ td {
 .IGridStatus1 {
     grid-area: IGridStatus;
     color: white;
-    background-color: var(--status0);
+    background-color: var(--status1);
     box-shadow: 0 0 1vh gray;
     padding: 2vh;
 }
@@ -348,7 +348,7 @@ td {
 .IGridStatus2 {
     grid-area: IGridStatus;
     color: white;
-    background-color: var(--status0);
+    background-color: var(--status2);
     box-shadow: 0 0 1vh gray;
     padding: 2vh;
 }
@@ -356,7 +356,7 @@ td {
 .IGridStatus3 {
     grid-area: IGridStatus;
     color: white;
-    background-color: var(--status0);
+    background-color: var(--status3);
     box-shadow: 0 0 1vh gray;
     padding: 2vh;
 }
@@ -364,7 +364,7 @@ td {
 .IGridStatus4 {
     grid-area: IGridStatus;
     color: white;
-    background-color: var(--status0);
+    background-color: var(--status4);
     box-shadow: 0 0 1vh gray;
     padding: 2vh;
 }
